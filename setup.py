@@ -11,8 +11,8 @@ from setuptools import setup
 
 setup(
     name='face_recognition_cnn',
-    version='v1.0',
-    packages=[''],
+    version='1.0',
+    packages=['face_recognition_cnn'],
     install_requires=['pandas', 'numpy', 'pylint'],
     url='https://github.com/Im-Rises/scraping_obituary',
     license='',
