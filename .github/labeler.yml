@@ -1,0 +1,11 @@
+repo:
+- '*'
+
+packages-requirements:
+- 'requirements.txt'
+
+packages-setup:
+- 'setup.py'
+
+source:
+- 'src/**/*.py'
