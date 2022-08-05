@@ -4,6 +4,9 @@ repo:
 github-ations:
   - '.github/**/*.yml'
 
+readme:
+- 'README.md'
+
 packages-requirements:
   - 'requirements.txt'
 
