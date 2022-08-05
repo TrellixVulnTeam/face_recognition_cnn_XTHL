@@ -71,6 +71,12 @@ pip install pytest
 > **Note**  
 > If you use follow the steps in the `Quickstart` section then you wont need to install it again.
 
+You can then run pytest by writting the following command at the root of the project:
+
+```bash
+pytest
+```
+
 ## GitHub Actions
 
 [![Python application](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml)
