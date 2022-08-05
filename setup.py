@@ -13,7 +13,7 @@ setup(
     name='face_recognition_cnn',
     version='1.0',
     packages=['face_recognition_cnn'],
-    install_requires=['pandas', 'numpy', 'pylint'],
+    install_requires=['pandas', 'numpy', 'pylint', 'pytest'],
     url='https://github.com/Im-Rises/scraping_obituary',
     license='',
     author='Im-Rises',
