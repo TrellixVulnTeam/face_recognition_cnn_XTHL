@@ -10,13 +10,13 @@ Setup.py python file
 from setuptools import setup
 
 setup(
-    name='face_recognition_cnn',
-    version='1.0',
-    packages=['face_recognition_cnn'],
-    install_requires=['pandas', 'numpy', 'pylint', 'pytest'],
-    url='https://github.com/Im-Rises/scraping_obituary',
-    license='',
-    author='Im-Rises',
-    author_email='quentin-morel88@hotmail.com',
-    description='Python Face recognition Deep Learning Script with CNN'
+    name="face_recognition_cnn",
+    version="1.0",
+    packages=["face_recognition_cnn"],
+    install_requires=["pandas", "numpy", "pylint", "pytest", "black"],
+    url="https://github.com/Im-Rises/scraping_obituary",
+    license="",
+    author="Im-Rises",
+    author_email="quentin-morel88@hotmail.com",
+    description="Python Face recognition Deep Learning Script with CNN",
 )
