@@ -1,7 +1,9 @@
 # face_recognition_cnn
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="pythonLogo">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="pythonLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/185226532-1378b39e-210d-4400-a4a1-a979572ed655.png" alt="skeletonLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/185226526-8cb9c3b2-7d1a-41b5-ba1e-50ba1f5b391e.png" alt="tensorflowLogo" style="height:50px;">
 </p>
 
 ## Description
@@ -61,7 +63,7 @@ project-revision
 ├── docs
 ├── misc
 |   ├── dataset
-|   ├── reszie.py
+|   ├── resize.py
 ├── src
 |   ├── denoise
 |   |   |── __init__.py
@@ -100,7 +102,7 @@ pip install pytest
 > **Note**  
 > If you use follow the steps in the `Quickstart` section then you wont need to install it again.
 
-You can then run pytest by writting the following command at the root of the project:
+You can then run pytest by writing the following command at the root of the project:
 
 ```bash
 pytest
@@ -171,7 +173,7 @@ pytest:
 Scikit-Learn:  
 <https://scikit-learn.org/stable/>
 
-Scitkit-Learn ML Face Recognition script:  
+Scikit-Learn ML Face Recognition script:  
 <https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
 
 PyLintRc File:  
@@ -188,3 +190,15 @@ Quentin MOREL :
 - <https://github.com/Im-Rises>
 
 [![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/face_recognition_cnn)](https://github.com/Im-Rises/face_recognition_cnn/graphs/contributors)
+
+<!--
+<https://l.messenger.com/l.php?u=https%3A%2F%2Ftowardsdatascience.com%2Fwhich-celebrity-are-you-d8c6507f21c9&h=AT2JXOiux7hfqK4Gey9gcOx_xiuX1g3oIkwaiiJ_R4_OPPzaZSGZNU9ta7Iu--xWiCKV9fb4UXF7pF2QQEekJCCDo-wAY0vBqUxFdPpKBvvxpYqFLdLNLf6OQXz80J6VdMI9oA>
+
+https://towardsdatascience.com/which-celebrity-are-you-d8c6507f21c9
+
+https://sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/
+
+https://medium.com/analytics-vidhya/celebrity-recognition-using-vggface-and-annoy-363c5df31f1e
+
+https://github.com/serengil/tensorflow-101
+-->

@@ -3,3 +3,4 @@ numpy
 pylint
 pytest
 black
+tensorflow
