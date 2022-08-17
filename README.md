@@ -6,7 +6,7 @@
 
 ## Description
 
-AI to recognize from face images.
+AI to recognize from face images. It is a convolutional neural network (CNN) based face recognition system.
 
 ## Quickstart
 
@@ -80,17 +80,15 @@ pytest
 ## GitHub Actions
 
 [![Python application](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml)
-
 [![Pylint](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/pylint.yml)
-
 [![CodeQL](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/codeql-analysis.yml)
 
 The main branch will run some yaml script when you push or create a pull request to the main branch. It will verify the
 behaviour of the code:
 
-- The code is starting
-- The code is formatted correctly
-- The code quality
+- Python application : The script will run the application and check if the prediction is correct.
+- Pylint : The script will run pylint and check if the code is clean.
+- CodeQL : The script will run codeql and check if the code is clean.
 
 Once all tests are passed you can push or merge to the main branch.
 
@@ -107,6 +105,9 @@ pytest:
 
 Scikit-Learn:  
 <https://scikit-learn.org/stable/>
+
+Scitkit-Learn ML Face Recognition script:  
+<https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
 
 ## Contributors
 
