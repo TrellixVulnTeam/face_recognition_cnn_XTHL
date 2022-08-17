@@ -129,7 +129,7 @@ It will scan all the project and print a report.
 
 ## Code formatter
 
-To format the code, the project is set up with a `.pylintrc` that create some rules about how the code should be.
+To format the code, the project is set up with a `.pylintrc` that change some rules about how the code should be.
 You can install black by typing
 
 ```bash
