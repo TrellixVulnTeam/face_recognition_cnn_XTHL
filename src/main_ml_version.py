@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 if __name__ == "__main__":
-    lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
+    lfw_people = fetch_lfw_people(min_faces_per_person=5)
     n_samples, h, w = lfw_people.images.shape
     print(f"LFW description\n- Number of samples: {n_samples}\n- Width: {w}\n- Height: {h}\n")
 

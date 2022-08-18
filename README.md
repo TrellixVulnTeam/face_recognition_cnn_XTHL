@@ -176,11 +176,20 @@ Scikit-Learn:
 Scikit-Learn ML Face Recognition script:  
 <https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
 
+Tensorflow:  
+<https://www.tensorflow.org>
+
+Tensorflow transfer learning:  
+<https://www.tensorflow.org/tutorials/images/transfer_learning>
+
 PyLintRc File:  
 <https://learn.adafruit.com/improve-your-code-with-pylint/pylintrc>
 
 Black Formatter:
 <https://github.com/psf/black>
+
+Datacorner transfer learning:  
+<https://datacorner.fr/vgg-transfer-learning/>
 
 ## Contributors
 
