@@ -13,16 +13,18 @@ The project is split in two parts, one using the script I found in the Sci-kit l
 to get the best result possible.
 I also implemented a CNN using Resnet50 and transfer learning, to try to get the best result possible.
 
+Training on the dataset with only persons with 3 or more images gives these results:
+
 - Resnet50:
-    - Accuracy: 0.9
-    - Precision: 0.9
-    - Recall: 0.9
-    - F1 score: 0.9
+    - Accuracy: 0.62
+[//]: # (    - Precision: 0.9)
+[//]: # (    - Recall: 0.9)
+[//]: # (    - F1 score: 0.9)
 - SVM:
-    - Accuracy: 0.9
-    - Precision: 0.9
-    - Recall: 0.9
-    - F1 score: 0.9
+    - Accuracy: 0.28
+[//]: # (    - Precision: 0.9)
+[//]: # (    - Recall: 0.9)
+[//]: # (    - F1 score: 0.9)
 
 ## Quickstart
 
@@ -90,7 +92,7 @@ project-revision
 
 The project is set up with some unit-test script to check the good behaviour of the project.
 
-These check will load the last model and try to predict some image, if the prediction is wrong than the test failed and
+These check will load the last model and try to predict some image, if the prediction is wronger than the test failed and
 signal the user preventing it from pushing to the other branches.
 
 To use pytest, you can install it thought the command line:
@@ -100,7 +102,7 @@ pip install pytest
 ```
 
 > **Note**  
-> If you use follow the steps in the `Quickstart` section then you wont need to install it again.
+> If you use follow the steps in the `Quickstart` section then you won't need to install it again.
 
 You can then run pytest by writing the following command at the root of the project:
 
@@ -117,7 +119,7 @@ pip install pylint
 ```
 
 > **Note**  
-> If you use follow the steps in the `Quickstart` section then you wont need to install it again.
+> If you use follow the steps in the `Quickstart` section then you won't need to install it again.
 
 Then you can use it by typing the following command at the root of the project:
 
@@ -185,8 +187,11 @@ Tensorflow transfer learning:
 PyLintRc File:  
 <https://learn.adafruit.com/improve-your-code-with-pylint/pylintrc>
 
-Black Formatter:
+Black Formatter:  
 <https://github.com/psf/black>
+
+Datacorner Deep Learning:  
+<https://datacorner.fr/category/ia/deep-learning/>
 
 Datacorner transfer learning:  
 <https://datacorner.fr/vgg-transfer-learning/>

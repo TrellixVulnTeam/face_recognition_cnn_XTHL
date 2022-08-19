@@ -13,7 +13,7 @@ setup(
     name="face_recognition_cnn",
     version="1.0",
     packages=["face_recognition_cnn"],
-    install_requires=["pandas", "numpy", "pylint", "pytest", "black", "tensorflow", "sklearn"],
+    install_requires=["pandas", "numpy", "pylint", "pytest", "black", "tensorflow", "sklearn", "seaborn", "keras", "matplotlib"],
     url="https://github.com/Im-Rises/face_recognition_cnn",
     license="",
     author="Im-Rises",
