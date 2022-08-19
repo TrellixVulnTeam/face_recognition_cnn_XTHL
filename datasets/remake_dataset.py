@@ -11,6 +11,8 @@ import os
 import shutil
 import tarfile
 
+from PIL import Image
+
 
 def untar_dataset(tar_file):
     """
@@ -18,6 +20,7 @@ def untar_dataset(tar_file):
     tar_file: path to the tar file
     :return:
     """
+    print("Untar dataset...")
     try:
         shutil.rmtree("lfw_funneled")
     except:
@@ -34,6 +37,7 @@ def delete_dirs_lack(dataset_directory, minimum_element_by_sample):
     minimum_element_by_sample: minimum number of images by sample
     :return:
     """
+    print("Delete directories with a lack of number of images...")
     dir_list = os.listdir(dataset_directory)
     for dir_name in dir_list:
         dir_path_name = f"{dataset_directory}/{dir_name}"
@@ -51,6 +55,7 @@ def remove_images_excess(dataset_directory, minimum_element_by_sample):
     minimum_element_by_sample: minimum number of images by sample
     :return:
     """
+    print("Delete images excess of the dataset...")
     dir_list = os.listdir(dataset_directory)
     for dir_name in dir_list:
         dir_path_name = f"{dataset_directory}/{dir_name}"
@@ -64,19 +69,24 @@ def remove_images_excess(dataset_directory, minimum_element_by_sample):
             print("Error removing directory: " + dir_path_name)
 
 
-def crop_images():
+def crop_images(dataset_directory):
     """
     Crop images from the dataset
     dataset_directory: path to the dataset
     :return:
     """
+    print("Crop images from the dataset...")
     dir_list = os.listdir(dataset_directory)
     for dir_name in dir_list:
         dir_path_name = f"{dataset_directory}/{dir_name}"
-        for image in os.listdir(dir_path_name):
-            image_path = f"{dir_path_name}/{image}"
-            os.system(f"convert {image_path} -crop 256x256+0+0 {image_path}")
-        im = Image.open(r"C:\Users\Admin\Pictures\geeks.png")
+        try:
+            for image_name in os.listdir(dir_path_name):
+                image_path = f"{dir_path_name}/{image_name}"
+                croped_image = Image.open(image_path)
+                croped_image = croped_image.crop((78, 70, 172, 195))
+                croped_image.save(image_path)
+        except:
+            print("Error cropping image: " + image_path)
 
 
 if __name__ == "__main__":
@@ -87,6 +97,6 @@ if __name__ == "__main__":
     print("Processing dataset...")
     untar_dataset(tar_file)
     delete_dirs_lack(dataset_directory, minimum_element_by_sample)
-    remove_images_excess(minimum_element_by_sample)
-    crop_images()
+    remove_images_excess(dataset_directory, minimum_element_by_sample)
+    crop_images(dataset_directory)
     print("Processed dataset")
