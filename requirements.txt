@@ -2,9 +2,9 @@ pandas
 numpy
 pylint
 pytest
-black
-tensorflow
+black==22.6.0
+tensorflow==2.9.1
 sklearn
 seaborn
 keras
-matplotlib
+matplotlib==3.5.3

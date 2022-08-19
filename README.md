@@ -26,6 +26,20 @@ Training on the dataset with only persons with 3 or more images gives these resu
 [//]: # (    - Recall: 0.9)
 [//]: # (    - F1 score: 0.9)
 
+70 images per person minimum:
+
+- Resnet50:
+  - Accuracy: 0.95
+    [//]: # (    - Precision: 0.9)
+    [//]: # (    - Recall: 0.9)
+    [//]: # (    - F1 score: 0.9)
+- SVM:
+  - Accuracy: 0.85
+    [//]: # (    - Precision: 0.9)
+    [//]: # (    - Recall: 0.9)
+    [//]: # (    - F1 score: 0.9)
+
+
 ## Quickstart
 
 To use the script, you need to install Python (at least 3.8 version).  
