@@ -17,28 +17,27 @@ Training on the dataset with only persons with 3 or more images gives these resu
 
 - Resnet50:
     - Accuracy: 0.62
-[//]: # (    - Precision: 0.9)
-[//]: # (    - Recall: 0.9)
-[//]: # (    - F1 score: 0.9)
+      [//]: # (    - Precision: 0.9)
+      [//]: # (    - Recall: 0.9)
+      [//]: # (    - F1 score: 0.9)
 - SVM:
     - Accuracy: 0.28
-[//]: # (    - Precision: 0.9)
-[//]: # (    - Recall: 0.9)
-[//]: # (    - F1 score: 0.9)
+      [//]: # (    - Precision: 0.9)
+      [//]: # (    - Recall: 0.9)
+      [//]: # (    - F1 score: 0.9)
 
 70 images per person minimum:
 
 - Resnet50:
-  - Accuracy: 0.95
-    [//]: # (    - Precision: 0.9)
-    [//]: # (    - Recall: 0.9)
-    [//]: # (    - F1 score: 0.9)
+    - Accuracy: 0.95
+      [//]: # (    - Precision: 0.9)
+      [//]: # (    - Recall: 0.9)
+      [//]: # (    - F1 score: 0.9)
 - SVM:
-  - Accuracy: 0.85
-    [//]: # (    - Precision: 0.9)
-    [//]: # (    - Recall: 0.9)
-    [//]: # (    - F1 score: 0.9)
-
+    - Accuracy: 0.85
+      [//]: # (    - Precision: 0.9)
+      [//]: # (    - Recall: 0.9)
+      [//]: # (    - F1 score: 0.9)
 
 ## Quickstart
 
@@ -106,7 +105,8 @@ project-revision
 
 The project is set up with some unit-test script to check the good behaviour of the project.
 
-These check will load the last model and try to predict some image, if the prediction is wronger than the test failed and
+These check will load the last model and try to predict some image, if the prediction is wronger than the test failed
+and
 signal the user preventing it from pushing to the other branches.
 
 To use pytest, you can install it thought the command line:
@@ -209,6 +209,11 @@ Datacorner Deep Learning:
 
 Datacorner transfer learning:  
 <https://datacorner.fr/vgg-transfer-learning/>
+
+Tensorflow:  
+<https://www.tensorflow.org/tutorials/load_data/images>  
+<https://www.tensorflow.org/tutorials/images/data_augmentation>  
+<https://www.tensorflow.org/guide/keras/preprocessing_layers>
 
 ## Contributors
 
