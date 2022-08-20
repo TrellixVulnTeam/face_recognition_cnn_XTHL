@@ -13,39 +13,69 @@ The project is split in two parts, one using the script I found in the Sci-kit l
 to get the best result possible.
 I also implemented a CNN using Resnet50 and transfer learning, to try to get the best result possible.
 
-Training on the dataset with only persons with 3 or more images gives these results:
+[//]: # (Training on the dataset with only persons with 3 or more images gives these results:)
 
-- Resnet50:
-    - Accuracy: 0.62
+[//]: # (- Resnet50:)
 
-      [//]: # (    - Precision: 0.9)
+[//]: # (    - Accuracy: 0.62)
 
-      [//]: # (    - Recall: 0.9)
+[//]: # ()
 
-      [//]: # (    - F1 score: 0.9)
+[//]: # (    - Precision: 0.9&#41;)
 
-- SVM:
-    - Accuracy: 0.28
+[//]: # ()
 
-      [//]: # (    - Precision: 0.9)
+[//]: # (    - Recall: 0.9&#41;)
 
-      [//]: # (    - Recall: 0.9)
+[//]: # ()
 
-      [//]: # (    - F1 score: 0.9)
+[//]: # (    - F1 score: 0.9&#41;)
 
-70 images per person minimum:
+[//]: # ()
 
-- Resnet50:
-    - Accuracy: 0.95
-- SVM:
-    - Accuracy: 0.85
+[//]: # (- SVM:)
 
-10 images per person minimum:
+[//]: # (    - Accuracy: 0.28)
 
-- Resnet50:
-    - Accuracy: 0.80
-- SVM:
-    - Accuracy: 0.50
+[//]: # ()
+
+[//]: # (    - Precision: 0.9)
+
+[//]: # ()
+
+[//]: # (    - Recall: 0.9)
+
+[//]: # ()
+
+[//]: # (    - F1 score: 0.9)
+
+[//]: # ()
+
+[//]: # (70 images per person minimum:)
+
+[//]: # ()
+
+[//]: # (- Resnet50:)
+
+[//]: # (    - Accuracy: 0.95)
+
+[//]: # (- SVM:)
+
+[//]: # (    - Accuracy: 0.85)
+
+[//]: # ()
+
+[//]: # (10 images per person minimum:)
+
+[//]: # ()
+
+[//]: # (- Resnet50:)
+
+[//]: # (    - Accuracy: 0.80)
+
+[//]: # (- SVM:)
+
+[//]: # (    - Accuracy: 0.50)
 
 ## Quickstart
 
