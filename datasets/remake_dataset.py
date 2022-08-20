@@ -86,7 +86,7 @@ def crop_images(dataset_directory):
                 croped_image = croped_image.crop((78, 70, 172, 195))
                 croped_image.save(image_path)
         except:
-            print("Error cropping image: " + image_path)
+            print("Error cropping image in " + dir_path_name)
 
 
 if __name__ == "__main__":
