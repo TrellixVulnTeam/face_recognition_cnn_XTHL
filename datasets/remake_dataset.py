@@ -96,7 +96,7 @@ def crop_images(dataset_directory):
 if __name__ == "__main__":
     tar_file = "lfw-funneled.tgz"
     dataset_directory = "lfw_funneled"
-    minimum_element_by_sample = 10
+    minimum_element_by_sample = 20
 
     print("Processing dataset...")
     delete_old_files(dataset_directory)
