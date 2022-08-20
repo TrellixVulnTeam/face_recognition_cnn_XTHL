@@ -17,27 +17,35 @@ Training on the dataset with only persons with 3 or more images gives these resu
 
 - Resnet50:
     - Accuracy: 0.62
+
       [//]: # (    - Precision: 0.9)
+
       [//]: # (    - Recall: 0.9)
+
       [//]: # (    - F1 score: 0.9)
+
 - SVM:
     - Accuracy: 0.28
+
       [//]: # (    - Precision: 0.9)
+
       [//]: # (    - Recall: 0.9)
+
       [//]: # (    - F1 score: 0.9)
 
 70 images per person minimum:
 
 - Resnet50:
     - Accuracy: 0.95
-      [//]: # (    - Precision: 0.9)
-      [//]: # (    - Recall: 0.9)
-      [//]: # (    - F1 score: 0.9)
 - SVM:
     - Accuracy: 0.85
-      [//]: # (    - Precision: 0.9)
-      [//]: # (    - Recall: 0.9)
-      [//]: # (    - F1 score: 0.9)
+
+10 images per person minimum:
+
+- Resnet50:
+    - Accuracy: 0.80
+- SVM:
+    - Accuracy: 0.50
 
 ## Quickstart
 
