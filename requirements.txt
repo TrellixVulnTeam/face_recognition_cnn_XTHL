@@ -3,8 +3,7 @@ numpy
 pylint
 pytest
 black==22.6.0
-tensorflow==2.9.1
+tensorflow==2.9.0
 sklearn
-seaborn
 keras
 matplotlib==3.5.3
