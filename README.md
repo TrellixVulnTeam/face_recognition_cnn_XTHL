@@ -13,69 +13,57 @@ The project is split in two parts, one using the script I found in the Sci-kit l
 to get the best result possible.
 I also implemented a CNN using Resnet50 and transfer learning, to try to get the best result possible.
 
-[//]: # (Training on the dataset with only persons with 3 or more images gives these results:)
+Dataset:
 
-[//]: # (- Resnet50:)
+- LFW
+- Large-scale CelebFaces Attributes
+- IMDB-WIKI
 
-[//]: # (    - Accuracy: 0.62)
+[//]: # (- UMD-Faces)
 
-[//]: # ()
+[//]: # (- VGGFace2)
 
-[//]: # (    - Precision: 0.9&#41;)
+## Results
 
-[//]: # ()
+### LFW
 
-[//]: # (    - Recall: 0.9&#41;)
+LFW 70 persons minimum:
 
-[//]: # ()
+- SVM and Eigen-faces:
+    - Accuracy: 0.85
 
-[//]: # (    - F1 score: 0.9&#41;)
+- Resnet50:
+    - Accuracy: 0.96
 
-[//]: # ()
+LFW 10 persons minimum:
 
-[//]: # (- SVM:)
+- SVM and Eigen-faces:
+    - Accuracy: 0.44
 
-[//]: # (    - Accuracy: 0.28)
+- Resnet50:
+    - Accuracy: 0.78
 
-[//]: # ()
+## Large-scale CelebFaces Attributes
 
-[//]: # (    - Precision: 0.9)
+- Resnet50:
 
-[//]: # ()
+## IMDB-WIKI
 
-[//]: # (    - Recall: 0.9)
+- Resnet50:
 
-[//]: # ()
+[//]: # (    - Accuracy: 0.96)
 
-[//]: # (    - F1 score: 0.9)
 
-[//]: # ()
+> **Note**  
+> The accuracy is shown is from the test datasets.
 
-[//]: # (70 images per person minimum:)
-
-[//]: # ()
-
-[//]: # (- Resnet50:)
-
-[//]: # (    - Accuracy: 0.95)
-
-[//]: # (- SVM:)
-
-[//]: # (    - Accuracy: 0.85)
-
-[//]: # ()
-
-[//]: # (10 images per person minimum:)
-
-[//]: # ()
-
-[//]: # (- Resnet50:)
-
-[//]: # (    - Accuracy: 0.80)
-
-[//]: # (- SVM:)
-
-[//]: # (    - Accuracy: 0.50)
+<!--
+- Resnet50:
+    - Accuracy: 0.62
+    - Precision: 0.9)
+    - Recall: 0.9)
+    - F1 score: 0.9)
+-->
 
 ## Quickstart
 
