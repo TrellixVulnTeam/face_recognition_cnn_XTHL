@@ -54,7 +54,7 @@ def crop_face(image, face_coordinates):
     """
     x_axis, y_axis, width, height = face_coordinates
     face_image = Image.fromarray(
-        image[y_axis : y_axis + height, x_axis : x_axis + width]
+        image[y_axis: y_axis + height, x_axis: x_axis + width]
     ).resize((94, 125))
     face_array = np.asarray(face_image)
     return expand_dims(np.asarray(face_array), 0)
@@ -118,3 +118,12 @@ if __name__ == "__main__":
     classification_model = load_model(MODEL_PATH)
     class_cascadefacial = cv.CascadeClassifier(HAAR_CASCADE_WEIGHTS)
     video_detection(class_cascadefacial, classification_model, PROJECT_NAME)
+
+    # image1 = cv.read("../datasets/clement/clement (1).jpg")
+    # image2 = cv.read("../datasets/clement/clement (2).jpg")
+    # image3 = cv.read("../datasets/clement/clement (3).jpg")
+    # image4 = cv.read("../datasets/clement/clement (4).jpg")
+    # clementList = [image1, image2, image3, image4]
+    # model = load_model(MODEL_PATH)
+    # predictions = model.predict(clementList)
+    # for i in predictions:
