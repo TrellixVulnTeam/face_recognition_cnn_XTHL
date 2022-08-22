@@ -1,0 +1,4 @@
+To train a model you need to have the lfw dataset:
+1. Download the dataset from here http://vis-www.cs.umass.edu/lfw
+2. Put the dataset in the folder next to the script remake_dataset.py (so next to this readme file)
+3. Start the remake_dataset.py script

@@ -1,0 +1,9 @@
+[FORMAT]
+max-line-length=100
+expected-line-ending-format=LF
+
+[TYPECHECK]
+ignored-modules=cv2
+
+[MESSAGES CONTROL]
+disable=no-member

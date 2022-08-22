@@ -1,14 +1,23 @@
 repo:
-- '*'
+  - '*'
+
+github-ations:
+  - '.github/**/*.yml'
 
 readme:
 - 'README.md'
 
 packages-requirements:
-- 'requirements.txt'
+  - 'requirements.txt'
 
 packages-setup:
-- 'setup.py'
+  - 'setup.py'
 
 source:
-- 'src/**/*.py'
+  - 'src/**/*.py'
+
+test:
+  - 'test/*.py'
+
+src:
+  - 'src/*.py'
