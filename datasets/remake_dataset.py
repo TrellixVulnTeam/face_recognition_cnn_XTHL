@@ -15,10 +15,15 @@ from PIL import Image
 
 
 def delete_old_files(dataset_directory):
+    """
+    Delete dataset files
+    dataset_directory: path to the dataset
+    :return:
+    """
     try:
         shutil.rmtree(dataset_directory)
         print("Delete old dataset files...")
-    except:
+    except FileNotFoundError:
         pass
 
 
@@ -29,9 +34,9 @@ def untar_dataset(tar_file):
     :return:
     """
     print("Untar dataset...")
-    tar = tarfile.open(tar_file, "r:gz")
-    tar.extractall()
-    tar.close()
+    with tarfile.open(tar_file, "r:gz") as tar:
+        tar.extractall()
+        tar.close()
 
 
 def delete_dirs_lack(dataset_directory, minimum_element_by_sample):
@@ -48,7 +53,7 @@ def delete_dirs_lack(dataset_directory, minimum_element_by_sample):
         try:
             if len(os.listdir(dir_path_name)) < minimum_element_by_sample:
                 shutil.rmtree(dir_path_name)
-        except:
+        except NotADirectoryError:
             print("Error removing directory: " + dir_path_name)
 
 
@@ -69,7 +74,7 @@ def remove_images_excess(dataset_directory, minimum_element_by_sample):
             if n_element_to_delete > 0:
                 for i in range(n_element_to_delete):
                     os.remove(f"{dir_path_name}/{sample_elements_list[i]}")
-        except:
+        except NotADirectoryError:
             print("Error removing directory: " + dir_path_name)
 
 
@@ -89,19 +94,19 @@ def crop_images(dataset_directory):
                 croped_image = Image.open(image_path)
                 croped_image = croped_image.crop((78, 70, 172, 195))
                 croped_image.save(image_path)
-        except:
+        except NotADirectoryError:
             print("Error cropping image in " + dir_path_name)
 
 
 if __name__ == "__main__":
-    tar_file = "lfw-funneled.tgz"
-    dataset_directory = "lfw_funneled"
-    minimum_element_by_sample = 10
+    TAR_FILE_NAME = "lfw-funneled.tgz"
+    DATASET_DIRECTORY = "lfw_funneled"
+    MINIMUM_IMAGES_BY_CLASS = 10
 
     print("Processing dataset...")
-    delete_old_files(dataset_directory)
-    untar_dataset(tar_file)
-    delete_dirs_lack(dataset_directory, minimum_element_by_sample)
+    delete_old_files(DATASET_DIRECTORY)
+    untar_dataset(TAR_FILE_NAME)
+    delete_dirs_lack(DATASET_DIRECTORY, MINIMUM_IMAGES_BY_CLASS)
     # remove_images_excess(dataset_directory, minimum_element_by_sample)
-    crop_images(dataset_directory)
+    crop_images(DATASET_DIRECTORY)
     print("Processed dataset")

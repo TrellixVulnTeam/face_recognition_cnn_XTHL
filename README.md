@@ -67,6 +67,8 @@ LFW 10 persons minimum:
 
 ## Quickstart
 
+[//]: # (The project is set up with `poetry`. )
+
 To use the script, you need to install Python (at least 3.8 version).  
 You also need to install some packages, you can find the list in the `requirements.txt` file or in the `setup.py` file.
 
@@ -95,37 +97,31 @@ pip install
 
 ## Project architecture
 
-<!--
 ~~~
-project-revision
-├── dataset
-|  ├── test
-|  ├── train
-├── docs
-├── misc
-|   ├── dataset
-|   ├── resize.py
+face_recognition_cnn
+├── datasets
+|  ├── dataset-here.text
+|  ├── lfw
+|  ├── remake_dataset.py
+|  ├── large-scale-celeb-faces-attributes
+|  ├── IMDB-WIKI
+├── models
+├── notebook
+|  ├── dl_lfw.ipynb
+|  ├── ml_lfw.ipynb
 ├── src
-|   ├── denoise
-|   |   |── __init__.py
-|   |   |── denoise.py
-|   |   |── errors.py
-|   ├── noise
-|   |   |── __init__.py
-|   |   |── errors.py
-|   |   |── noise.py
-|   ├── results
-|   ├── cobra.py
-|   ├── cobramachine.py
-|   ├── denoise.py
-|   ├── helper.py
-|   ├── main.py
-|   ├── req.txt
+|  ├── main.py
+|  ├── training.py
+├── weights
+|  ├── resnet50_lfw.h5
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── .pylintrc
 ├── README.md
-├── guidelines.md
-├── proposal.md
+├── requirements.txt
+├── setup.py
 ~~~
--->
 
 ## Unit test scripts
 
@@ -186,6 +182,26 @@ To start a check and correct the code type:
 black --check --target-version=py35 .
 ```
 
+## Git Large File Storage
+
+To store online the weights of the model, I use the Git Large File Storage app which I specified in the `.gittatributes`
+file which file to store in the git repository.
+
+Git Large File Storage:  
+<https://git-lfs.github.com>
+
+> **Note**  
+> Al files registered for LFS in the `.gitattributes` file will be stored in the as only one entity (no versioning).
+> Originally all files in the weights folder will be stored online.
+
+To add a new large file to the repository, type the following command:
+
+```bash
+git lfs track <file_path>
+```
+
+It will also register it in the `.gitattributes` file.
+
 ## GitHub Actions
 
 [![Python application](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml)
@@ -203,43 +219,38 @@ Once all tests are passed you can push or merge to the main branch.
 
 ## Documentation and Libraries
 
-python:  
+Python:  
 <https://www.python.org>
 
-pylint:  
+Pylint:  
 <https://pylint.pycqa.org/en/latest/>
 
-pytest:  
-<https://docs.pytest.org/en/stable/>
-
-Scikit-Learn:  
-<https://scikit-learn.org/stable/>
-
-Scikit-Learn ML Face Recognition script:  
-<https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
-
-Tensorflow:  
-<https://www.tensorflow.org>
-
-Tensorflow transfer learning:  
-<https://www.tensorflow.org/tutorials/images/transfer_learning>
-
 PyLintRc File:  
-<https://learn.adafruit.com/improve-your-code-with-pylint/pylintrc>
+<https://github.com/PyCQA/pylint/blob/main/pylintrc>
 
 Black Formatter:  
 <https://github.com/psf/black>
 
-Datacorner Deep Learning:  
-<https://datacorner.fr/category/ia/deep-learning/>
+Pytest:  
+<https://docs.pytest.org/en/stable/>
 
-Datacorner transfer learning:  
-<https://datacorner.fr/vgg-transfer-learning/>
+Scikit-Learn:  
+<https://scikit-learn.org/stable/>
+<https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
 
 Tensorflow:  
+<https://www.tensorflow.org>
 <https://www.tensorflow.org/tutorials/load_data/images>  
 <https://www.tensorflow.org/tutorials/images/data_augmentation>  
 <https://www.tensorflow.org/guide/keras/preprocessing_layers>
+<https://www.tensorflow.org/tutorials/images/transfer_learning>
+
+Datacorner:  
+<https://datacorner.fr/category/ia/deep-learning/>
+<https://datacorner.fr/vgg-transfer-learning/>
+
+Git Large FIle Storage:  
+<https://git-lfs.github.com>
 
 ## Contributors
 

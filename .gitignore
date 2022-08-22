@@ -6,7 +6,7 @@
 *.tgz
 datasets/*/**
 documentations/
-weights/
+#weights/
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all,python
