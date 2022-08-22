@@ -14,7 +14,7 @@ The project is split in two parts, one using the script I found in the Sci-kit l
 to get the best result possible.
 I also implemented a CNN using Resnet50 and transfer learning, to try to get the best result possible.
 
-Dataset:
+Datasets:
 
 - LFW
 - Large-scale CelebFaces Attributes
