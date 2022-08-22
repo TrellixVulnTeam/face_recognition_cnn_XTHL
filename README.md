@@ -4,6 +4,7 @@
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="pythonLogo" style="height:50px;">
     <img src="https://user-images.githubusercontent.com/59691442/185226532-1378b39e-210d-4400-a4a1-a979572ed655.png" alt="skeletonLogo" style="height:50px;">
     <img src="https://user-images.githubusercontent.com/59691442/185226526-8cb9c3b2-7d1a-41b5-ba1e-50ba1f5b391e.png" alt="tensorflowLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/172961027-fd9185a5-da77-46e3-97b1-54e99e242822.png" alt="opencvLogo" style="height:50px;">
 </p>
 
 ## Description
@@ -23,47 +24,13 @@ Dataset:
 
 [//]: # (- VGGFace2)
 
-## Results
+## Images
 
-### LFW
+PlaceHolder
 
-LFW 70 persons minimum:
+## Videos
 
-- SVM and Eigen-faces:
-    - Accuracy: 0.85
-
-- Resnet50:
-    - Accuracy: 0.96
-
-LFW 10 persons minimum:
-
-- SVM and Eigen-faces:
-    - Accuracy: 0.44
-
-- Resnet50:
-    - Accuracy: 0.78
-
-## Large-scale CelebFaces Attributes
-
-- Resnet50:
-
-## IMDB-WIKI
-
-- Resnet50:
-
-[//]: # (    - Accuracy: 0.96)
-
-
-> **Note**  
-> The accuracy is shown is from the test datasets.
-
-<!--
-- Resnet50:
-    - Accuracy: 0.62
-    - Precision: 0.9)
-    - Recall: 0.9)
-    - F1 score: 0.9)
--->
+PlaceHolder
 
 ## Quickstart
 
@@ -95,15 +62,31 @@ or
 pip install
 ```
 
+Once everything is installed, you can open the script `main.py` in the `src` folder.
+It will create a window and start your camera.
+Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the
+console.
+
 ## Project architecture
 
 ~~~
 face_recognition_cnn
+├── .github
+|  ├── labeler.yml
+|  ├── release.yml
+|  |  |── black.yml
+|  |  |── codeql-analysis.yml
+|  |  |── dependency-review.yml
+|  |  |── greetings.yml
+|  |  |── label.yml
+|  |  |── pylint.yml
+|  |  |── python-app.yml
+|  |  |── stale.yml
 ├── datasets
 |  ├── dataset-here.text
 |  ├── lfw
 |  ├── remake_dataset.py
-├── daceDetectionWeights
+├── face_detection_weights
 |  ├── download-link.txt
 |  ├── haarcascade_frontalface_default.xml
 ├── models
@@ -124,6 +107,49 @@ face_recognition_cnn
 ├── setup.py
 ~~~
 
+## Training results
+
+### LFW
+
+LFW 70 persons minimum:
+
+- SVM and Eigen-faces:
+    - Accuracy: 0.85
+
+- Resnet50:
+    - Accuracy: 0.96
+
+LFW 10 persons minimum:
+
+- SVM and Eigen-faces:
+    - Accuracy: 0.44
+
+- Resnet50:
+    - Accuracy: 0.78
+
+<!--
+### Large-scale CelebFaces Attributes
+
+- Resnet50:
+
+### IMDB-WIKI
+
+- Resnet50:
+
+    - Accuracy: 0.96
+-->
+
+> **Note**  
+> The accuracy is shown is from the test datasets.
+
+<!--
+- Resnet50:
+    - Accuracy: 0.62
+    - Precision: 0.9)
+    - Recall: 0.9)
+    - F1 score: 0.9)
+-->
+
 ## Unit test scripts
 
 The project is set up with some unit-test script to check the good behaviour of the project.
@@ -138,14 +164,14 @@ To use pytest, you can install it thought the command line:
 pip install pytest
 ```
 
-> **Note**  
-> If you use follow the steps in the `Quickstart` section then you won't need to install it again.
-
 You can then run pytest by writing the following command at the root of the project:
 
 ```bash
 pytest
 ```
+
+> **Note**  
+> If you followed the steps in the `Quickstart` section then you won't need to install it again.
 
 ## PyLint set up
 
@@ -155,9 +181,6 @@ The project is formatted via PyLint, if you want to check the project, you will 
 pip install pylint
 ```
 
-> **Note**  
-> If you use follow the steps in the `Quickstart` section then you won't need to install it again.
-
 Then you can use it by typing the following command at the root of the project:
 
 ```bash
@@ -165,6 +188,9 @@ pylint .
 ```
 
 It will scan all the project and print a report.
+
+> **Note**  
+> If you followe the steps in the `Quickstart` section then you won't need to install it again.
 
 ## Code formatter
 
@@ -189,8 +215,8 @@ To start a check and correct the code type:
 black --check --target-version=py35 .
 ```
 
-> **Note**
-> To format the Jupyter Notebook file you need to install it through the command line, it won't be install with
+> **Warning**  
+> To format the Jupyter Notebook file you need to install it through the command line, it won't be installed with
 > the `requirements.txt` and `setup.py`.
 
 ## Git Large File Storage
@@ -201,10 +227,6 @@ file which file to store in the git repository.
 Git Large File Storage:  
 <https://git-lfs.github.com>
 
-> **Note**  
-> Al files registered for LFS in the `.gitattributes` file will be stored in the as only one entity (no versioning).
-> Originally all files in the weights folder will be stored online.
-
 To add a new large file to the repository, type the following command:
 
 ```bash
@@ -213,17 +235,23 @@ git lfs track <file_path>
 
 It will also register it in the `.gitattributes` file.
 
+> **Warning**  
+> Al files registered for LFS in the `.gitattributes` file will be stored in the as only one entity (no versioning).
+> Originally all files in the weights folder will be stored online.
+
 ## GitHub Actions
 
 [![Python application](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/python-app.yml)
 [![Pylint](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/pylint.yml)
+[![Black code-style](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/black.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/black.yml)
 [![CodeQL](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Im-Rises/face_recognition_cnn/actions/workflows/codeql-analysis.yml)
 
 The main branch will run some yaml script when you push or create a pull request to the main branch. It will verify the
 behaviour of the code:
 
 - Python application : The script will run the application and check if the prediction is correct.
-- Pylint : The script will run pylint and check if the code is formatted.
+- Pylint : The script will run pylint and check if the code respect some norms.
+- Black : The script will run black and check if the code is formatted.
 - CodeQL : The script will run codeql and check if the code is clean.
 
 Once all tests are passed you can push or merge to the main branch.
@@ -249,7 +277,7 @@ Scikit-Learn:
 <https://scikit-learn.org/stable/>
 <https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
 
-OpenCv:
+OpenCv:  
 <https://opencv.org>
 
 OpenCv Face Detections weights:
