@@ -103,8 +103,9 @@ face_recognition_cnn
 |  ├── dataset-here.text
 |  ├── lfw
 |  ├── remake_dataset.py
-|  ├── large-scale-celeb-faces-attributes
-|  ├── IMDB-WIKI
+├── daceDetectionWeights
+|  ├── download-link.txt
+|  ├── haarcascade_frontalface_default.xml
 ├── models
 ├── notebook
 |  ├── dl_lfw.ipynb
@@ -174,6 +175,12 @@ You can install black by typing
 pip install black
 ```
 
+and install the jupyter extension to black to format them too.
+
+```bash
+ pip install 'black[jupyter]'
+```
+
 or if you followed the instruction in the `Quickstart` section and install the requirements by using
 the `requirements.txt` or the `setup.py` file, you can already use it.
 To start a check and correct the code type:
@@ -181,6 +188,10 @@ To start a check and correct the code type:
 ```bash
 black --check --target-version=py35 .
 ```
+
+> **Note**
+> To format the Jupyter Notebook file you need to install it through the command line, it won't be install with
+> the `requirements.txt` and `setup.py`.
 
 ## Git Large File Storage
 
@@ -237,6 +248,12 @@ Pytest:
 Scikit-Learn:  
 <https://scikit-learn.org/stable/>
 <https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html>
+
+OpenCv:
+<https://opencv.org>
+
+OpenCv Face Detections weights:
+<https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml>
 
 Tensorflow:  
 <https://www.tensorflow.org>
