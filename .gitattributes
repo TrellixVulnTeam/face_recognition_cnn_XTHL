@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.ipynb linguist-vendored
-weights/* filter=lfs diff=lfs merge=lfs -text
+models/** linguist-vendored
+weights/** filter=lfs diff=lfs merge=lfs -text
+models/** filter=lfs diff=lfs merge=lfs -text

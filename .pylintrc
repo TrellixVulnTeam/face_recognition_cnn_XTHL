@@ -5,5 +5,5 @@ expected-line-ending-format=LF
 [TYPECHECK]
 ignored-modules=cv2
 
-[MESSAGES CONTROL]
-disable=no-member
+# [MESSAGES CONTROL]
+# disable=no-member

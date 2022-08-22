@@ -5,7 +5,7 @@ github-ations:
   - '.github/**/*.yml'
 
 readme:
-- 'README.md'
+  - 'README.md'
 
 packages-requirements:
   - 'requirements.txt'
@@ -21,3 +21,12 @@ test:
 
 src:
   - 'src/*.py'
+
+notebook:
+  - 'notebook/*.ipynb'
+
+datasets:
+  - 'datasets/*'
+
+weights:
+  - 'weights/*'
