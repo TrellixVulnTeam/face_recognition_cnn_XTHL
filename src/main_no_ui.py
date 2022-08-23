@@ -119,11 +119,12 @@ if __name__ == "__main__":
     class_cascadefacial = cv.CascadeClassifier(HAAR_CASCADE_WEIGHTS)
     video_detection(class_cascadefacial, classification_model, PROJECT_NAME)
 
-    # image1 = cv.read("../datasets/clement/clement (1).jpg")
-    # image2 = cv.read("../datasets/clement/clement (2).jpg")
-    # image3 = cv.read("../datasets/clement/clement (3).jpg")
-    # image4 = cv.read("../datasets/clement/clement (4).jpg")
-    # clementList = [image1, image2, image3, image4]
+    # image1 = cv.imread("../datasets/clement/clement (1).jpg", cv.CASCADE_SCALE_IMAGE)
+    # image2 = cv.imread("../datasets/clement/clement (2).jpg", cv.CASCADE_SCALE_IMAGE)
+    # image3 = cv.imread("../datasets/clement/clement (3).jpg", cv.CASCADE_SCALE_IMAGE)
+    # image4 = cv.imread("../datasets/clement/clement (4).jpg", cv.CASCADE_SCALE_IMAGE)
+    # # clementList = [image1, image2, image3, image4]
     # model = load_model(MODEL_PATH)
-    # predictions = model.predict(clementList)
+    # predictions = model.predict(image1)
     # for i in predictions:
+    #     print(person_dic.id_10_person_dic[np.argmax(i)])
