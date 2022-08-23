@@ -22,8 +22,10 @@ the `notebooks` folder.
 Datasets:
 
 - LFW
-- Large-scale CelebFaces Attributes
-- IMDB-WIKI
+
+[//]: # (- Large-scale CelebFaces Attributes)
+
+[//]: # (- IMDB-WIKI)
 
 [//]: # (- UMD-Faces)
 

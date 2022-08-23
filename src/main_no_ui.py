@@ -68,11 +68,11 @@ def video_detection(haarclass, classificator, window_name):
     :param window_name: name of the window to display the video in
     :return:
     """
-    webcam = cv.VideoCapture(0)
-    if webcam.isOpened():
+    cam = cv.VideoCapture(0)
+    if cam.isOpened():
         face = None
         while True:
-            b_img_ready, image_frame = webcam.read()
+            b_img_ready, image_frame = cam.read()
             if b_img_ready:
                 camera_image, face = facial_detection_and_mark(image_frame, haarclass)
                 cv.imshow(window_name, camera_image)
@@ -85,7 +85,7 @@ def video_detection(haarclass, classificator, window_name):
                 predict(classificator, face)
             if cv.getWindowProperty(window_name, cv.WND_PROP_VISIBLE) < 1:
                 break
-        webcam.release()
+        cam.release()
         cv.destroyAllWindows()
 
 
