@@ -7,7 +7,7 @@ main.py python file
 @author: Im-Rises
 """
 
-import UserInterface as ui
+import user_interface as ui
 
 if __name__ == "__main__":
     PROJECT_NAME = "face_recognition_cnn"
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     user_interface = ui.UserInterface(PROJECT_NAME, HAAR_CASCADE_WEIGHTS, MODEL_PATH)
     user_interface.start()
-    
+
     # image1 = cv.imread("../datasets/clement/clement (1).jpg", cv.CASCADE_SCALE_IMAGE)
     # image2 = cv.imread("../datasets/clement/clement (2).jpg", cv.CASCADE_SCALE_IMAGE)
     # image3 = cv.imread("../datasets/clement/clement (3).jpg", cv.CASCADE_SCALE_IMAGE)

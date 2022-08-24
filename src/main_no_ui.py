@@ -54,7 +54,7 @@ def crop_face(image, face_coordinates):
     """
     x_axis, y_axis, width, height = face_coordinates
     face_image = Image.fromarray(
-        image[y_axis: y_axis + height, x_axis: x_axis + width]
+        image[y_axis : y_axis + height, x_axis : x_axis + width]
     ).resize((94, 125))
     face_array = np.asarray(face_image)
     return expand_dims(np.asarray(face_array), 0)
@@ -94,7 +94,7 @@ def load_model(model_path):
     Function to load the prediction model with its weights
     :return: loaded model
     """
-    return tf.keras.models.load_prediction_model(model_path)
+    return tf.keras.models.load_model(model_path)
 
 
 def predict(model, face):
