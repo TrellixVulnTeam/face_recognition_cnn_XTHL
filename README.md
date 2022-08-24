@@ -109,6 +109,8 @@ face_recognition_cnn
 |  ├── download-link.txt
 |  ├── haarcascade_frontalface_default.xml
 ├── models
+├── resnet50_dl_lfw
+├── resnet50_dl_lfw_empty
 ├── notebook
 |  ├── dl_lfw.ipynb
 |  ├── ml_lfw.ipynb
