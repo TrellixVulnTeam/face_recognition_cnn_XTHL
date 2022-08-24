@@ -22,12 +22,15 @@ class UserInterface:
         self.window.mainloop()
 
     def show_frames(self):
-        cv2image = cv.cvtColor(self.camera.read()[1], cv.COLOR_BGR2RGB)
-        img = Image.fromarray(cv2image)
-        imgtk = ImageTk.PhotoImage(image=img)
-        self.camera_label.imgtk = imgtk
-        self.camera_label.configure(image=imgtk)
-        self.camera_label.after(20, self.show_frames)
+        b_img_ready, image_frame = self.camera.read()
+        if b_img_ready:
+            camera_image, face = self.facial_detection_and_mark(image_frame, self.class_cascadefacial)
+            cv2image = cv.cvtColor(camera_image, cv.COLOR_BGR2RGB)
+            img = Image.fromarray(cv2image)
+            imgtk = ImageTk.PhotoImage(image=img)
+            self.camera_label.imgtk = imgtk
+            self.camera_label.configure(image=imgtk)
+            self.camera_label.after(20, self.show_frames)
 
     def create_window(self, window_name):
         # Window creation
