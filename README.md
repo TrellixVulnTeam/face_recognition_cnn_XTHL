@@ -5,20 +5,27 @@
     <img src="https://user-images.githubusercontent.com/59691442/185226532-1378b39e-210d-4400-a4a1-a979572ed655.png" alt="skeletonLogo" style="height:50px;">
     <img src="https://user-images.githubusercontent.com/59691442/185226526-8cb9c3b2-7d1a-41b5-ba1e-50ba1f5b391e.png" alt="tensorflowLogo" style="height:50px;">
     <img src="https://user-images.githubusercontent.com/59691442/172961027-fd9185a5-da77-46e3-97b1-54e99e242822.png" alt="opencvLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/186103062-770f199a-b55a-43a5-ab43-0cd1685cb0dd.png" alt="tkinterLogo" style="height:50px;">
 </p>
 
 ## Description
 
 AI to recognize from face images. It is a convolutional neural network (CNN) based face recognition system.
 The project is split in two parts, one using the script I found in the Sci-kit learn documentation, I modified it to try
-to get the best result possible.
+to get the best result possible.  
 I also implemented a CNN using Resnet50 and transfer learning, to try to get the best result possible.
+The app use the ResNet50 model trained with LFW dataset.
+
+The main scripts are in the `src` folder, the `test` folder contains the test scripts and the notebooks are in
+the `notebooks` folder.
 
 Datasets:
 
 - LFW
-- Large-scale CelebFaces Attributes
-- IMDB-WIKI
+
+[//]: # (- Large-scale CelebFaces Attributes)
+
+[//]: # (- IMDB-WIKI)
 
 [//]: # (- UMD-Faces)
 
@@ -26,15 +33,13 @@ Datasets:
 
 ## Images
 
-PlaceHolder
+### Dataset images
 
-## Videos
+![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
 
-PlaceHolder
+### UI screenshot
 
 ## Quickstart
-
-[//]: # (The project is set up with `poetry`. )
 
 To use the script, you need to install Python (at least 3.8 version).  
 You also need to install some packages, you can find the list in the `requirements.txt` file or in the `setup.py` file.
@@ -64,8 +69,22 @@ pip install
 
 Once everything is installed, you can open the script `main.py` in the `src` folder.
 It will create a window and start your camera.
-Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the
-console.
+
+[//]: # (Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the)
+
+[//]: # (console.)
+
+There is two ways to use the app:
+
+- Open an image by clicking on the `Open image` button.
+- Use the webcam by clicking on the `Find face` button.
+
+If you have selected an image from your computer, the image will automatically find the face in your image, crop and
+display it in the left part of the app.
+You can then press the `predict` button to check who it is.
+
+If you use the camera from your computer, when you clicked find face, your face will be croped from the video and
+display in the left of the app, then you can press the `predict` button to check who you look like.
 
 ## Project architecture
 
@@ -90,12 +109,16 @@ face_recognition_cnn
 |  ├── download-link.txt
 |  ├── haarcascade_frontalface_default.xml
 ├── models
+├── resnet50_dl_lfw
+├── resnet50_dl_lfw_empty
 ├── notebook
 |  ├── dl_lfw.ipynb
 |  ├── ml_lfw.ipynb
 ├── src
 |  ├── main.py
+|  ├── person_dictionary.py
 |  ├── training.py
+|  ├── user_interface.py
 ├── weights
 |  ├── resnet50_lfw.h5
 ├── .editorconfig
@@ -109,7 +132,13 @@ face_recognition_cnn
 
 ## Training results
 
-### LFW
+### Training details
+
+![myplot](https://user-images.githubusercontent.com/59691442/186006713-7d9eedda-f51a-43ed-8492-87449dc72fcc.png)
+
+### Dataset results
+
+#### LFW
 
 LFW 70 persons minimum:
 
@@ -127,22 +156,13 @@ LFW 10 persons minimum:
 - Resnet50:
     - Accuracy: 0.78
 
-<!--
-### Large-scale CelebFaces Attributes
-
-- Resnet50:
-
-### IMDB-WIKI
-
-- Resnet50:
-
-    - Accuracy: 0.96
--->
-
 > **Note**  
 > The accuracy is shown is from the test datasets.
 
 <!--
+### Large-scale CelebFaces Attributes
+### IMDB-WIKI
+
 - Resnet50:
     - Accuracy: 0.62
     - Precision: 0.9)

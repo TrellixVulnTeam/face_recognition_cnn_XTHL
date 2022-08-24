@@ -10,3 +10,4 @@ matplotlib==3.5.3
 opencv-python==4.6.0.66
 Pillow==9.2.0
 setuptools==65.2.0
+
