@@ -69,8 +69,22 @@ pip install
 
 Once everything is installed, you can open the script `main.py` in the `src` folder.
 It will create a window and start your camera.
-Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the
-console.
+
+[//]: # (Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the)
+
+[//]: # (console.)
+
+There is two ways to use the app:
+
+- Open an image by clicking on the `Open image` button.
+- Use the webcam by clicking on the `Find face` button.
+
+If you have selected an image from your computer, the image will automatically find the face in your image, crop and
+display it in the left part of the app.
+You can then press the `predict` button to check who it is.
+
+If you use the camera from your computer, when you clicked find face, your face will be croped from the video and
+display in the left of the app, then you can press the `predict` button to check who you look like.
 
 ## Project architecture
 

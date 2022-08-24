@@ -163,7 +163,7 @@ class UserInterface:
             widget.grid(padx=0, pady=3)
         return frame
 
-    # ---------------------------GENERATE EMPTY 2D IMAGE ARRAY (BLACK IMAGE)---------------------------#
+    # ----------------------GENERATE EMPTY 2D IMAGE ARRAY (BLACK IMAGE)-----------------------#
     def __set_init_image_label(self, shape, image_label):
         """
         Set the image label to a blank image. It prevents a bug where the label is
@@ -224,7 +224,7 @@ class UserInterface:
     def __open_image_with_file_browser(self):
         file_name_path = fd.askopenfilename(title="Select an image")
         face_browser = cv.imread(file_name_path)
-        image, face_browser = self.__facial_detection_and_mark(face_browser)
+        face_browser = self.__facial_detection_and_mark(face_browser)[1]
         cv2image = cv.cvtColor(face_browser, cv.COLOR_BGR2RGB)
         face_image = Image.fromarray(cv2image).resize(
             self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
