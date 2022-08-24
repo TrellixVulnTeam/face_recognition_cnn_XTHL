@@ -30,3 +30,6 @@ datasets:
 
 weights:
   - 'weights/*'
+
+models:
+  - 'models/*'
