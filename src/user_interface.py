@@ -217,7 +217,7 @@ class UserInterface:
         :return: cropped __face_buffer
         """
         x_axis, y_axis, width, height = face_coordinates
-        face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
+        face_image = image[y_axis : y_axis + height, x_axis : x_axis + width]
         return np.asarray(face_image)
 
     # ------------------------------OPEN FILE BROWSER------------------------------#
