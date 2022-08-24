@@ -15,55 +15,80 @@ import cv2 as cv
 import numpy as np
 import tensorflow as tf
 from PIL import Image, ImageTk
+from numpy import expand_dims
+
+import person_dictionary
 
 
-# Put everything in private scope
-
-
+# pylint: disable=too-many-instance-attributes, too-few-public-methods
 class UserInterface:
+    """
+    Class to create the user interface for the application
+    """
+
     VIDEO_LABEL_SHAPE = (300, 250)
     IMAGE_FACE_LABEL_SHAPE = (94, 125)
 
+    # ------------------------------CONSTRUCTOR------------------------------#
     def __init__(self, window_name, haar_cascade_weights_path, model_path):
-        self.camera_label = None
-        self.face_label = None
-        self.scrolled_text_pred = None
-        self.window = self.create_window(window_name)
-        self.camera = self.set_up_opencv()
-        self.class_cascadefacial = cv.CascadeClassifier(haar_cascade_weights_path)
-        self.face = None
-        self.classification_model = self.load_prediction_model(model_path)
-
-    def start(self):
-        self.camera_label.after(20, self.show_frames)
-        self.window.mainloop()
-
-    def set_init_image_label(self, shape, image_label):
         """
-        Set the image label to a blank image. It prevents a bug where the label is
-        created without image which consequently create a window to the maximum size.
-        :param shape: the shape of the image
-        :param image_label: the image label to set
+        Constructor of the class
+        :param window_name: the name of the window
+        :param haar_cascade_weights_path: the path of the haar cascade weights
+        :param model_path: the path of the model
         :return: None
         """
-        arr = np.asarray([[255] * shape[0]] * shape[1])
-        face_image = Image.fromarray(arr)
-        face_image = ImageTk.PhotoImage(face_image)
-        image_label.imgtk = face_image
-        image_label.configure(image=face_image)
+        self.__scrolled_text_pred = None
+        self.__camera_label = None
+        self.__face_label = None
+        self.__camera = self.__set_up_opencv()
+        self.__class_cascadefacial = cv.CascadeClassifier(haar_cascade_weights_path)
+        self.__classification_model = self.__load_prediction_model(model_path)
+        self.__window = self.__create_window(window_name)
+        self.__face_buffer = None
+        self.__predictable_face_buffer = None
 
-    def show_frames(self):
-        b_img_ready, image_frame = self.camera.read()
+    # ------------------------------START METHOD------------------------------#
+    def start(self):
+        """
+        Function to start the application
+        :return: None
+        """
+        self.__camera_label.after(20, self.__show_frames)
+        self.__window.mainloop()
+
+    # ------------------------------REFRESH VIDEO METHOD------------------------------#
+    def __show_frames(self):
+        b_img_ready, image_frame = self.__camera.read()
         if b_img_ready:
-            camera_image, self.face = self.facial_detection_and_mark(image_frame)
+            camera_image, self.__face_buffer = self.__facial_detection_and_mark(
+                image_frame
+            )
             cv2image = cv.cvtColor(camera_image, cv.COLOR_BGR2RGB)
             img = Image.fromarray(cv2image).resize(self.VIDEO_LABEL_SHAPE)
             imgtk = ImageTk.PhotoImage(image=img)
-            self.camera_label.imgtk = imgtk
-            self.camera_label.configure(image=imgtk)
-            self.camera_label.after(20, self.show_frames)
+            self.__camera_label.imgtk = imgtk
+            self.__camera_label.configure(image=imgtk)
+            self.__camera_label.after(20, self.__show_frames)
 
-    def create_window(self, window_name):
+    # ------------------------------INIT OPENCV METHOD------------------------------#
+    def __set_up_opencv(self):
+        """
+        Function to set up the opencv __camera
+        :return: None
+        """
+        return cv.VideoCapture(0)
+
+    # ------------------------------LOAD MODEL METHOD------------------------------#
+    def __load_prediction_model(self, model_path):
+        """
+        Function to load the prediction model with its weights
+        :return: loaded model
+        """
+        return tf.keras.models.load_model(model_path)
+
+    # ------------------------------CREATE WINDOW METHOD------------------------------#
+    def __create_window(self, window_name):
         # Window creation
         root = tk.Tk()
         root.title(window_name)
@@ -79,29 +104,30 @@ class UserInterface:
         # Frames creation
         root.columnconfigure(0, weight=0)
         root.columnconfigure(1, weight=0)
-        frame_camera = self.create_video_frame(root)
+        frame_camera = self.__create_video_frame(root)
         frame_camera.grid(column=0, row=0)
-        frame_face_prediction = self.create_prediction_frame(root)
+        frame_face_prediction = self.__create_prediction_frame(root)
         frame_face_prediction.grid(column=1, row=0)
 
         return root
 
-    def create_video_frame(self, container):
+    # ------------------------------CREATE VIDEO FRAME FOR WINDOW------------------------------#
+    def __create_video_frame(self, container):
         frame = tk.Frame(container)
         frame.columnconfigure(0, weight=0)
 
-        self.camera_label = tk.Label(
+        self.__camera_label = tk.Label(
             frame, width=self.VIDEO_LABEL_SHAPE[0], height=self.VIDEO_LABEL_SHAPE[1]
         )
-        self.camera_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
-        self.set_init_image_label(self.VIDEO_LABEL_SHAPE, self.camera_label)
+        self.__camera_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
+        self.__set_init_image_label(self.VIDEO_LABEL_SHAPE, self.__camera_label)
 
         tk.Label(frame, text="Video capture state:").grid(column=0, row=1, sticky=tk.W)
         tk.Button(frame, text="ON/OFF").grid(column=1, row=1)
-        tk.Label(frame, text="Find face for prediction").grid(
+        tk.Label(frame, text="Find __face_buffer for prediction").grid(
             column=0, row=2, sticky=tk.W
         )
-        tk.Button(frame, text="Find Face", command=self.put_face_in_label).grid(
+        tk.Button(frame, text="Find Face", command=self.__put_face_in_label).grid(
             column=1, row=2
         )
         for widget in frame.winfo_children():
@@ -109,70 +135,69 @@ class UserInterface:
 
         return frame
 
-    def create_prediction_frame(self, container):
+    # ---------------------------CREATE PREDICTION FRAME FOR WINDOW---------------------------#
+    def __create_prediction_frame(self, container):
         frame = tk.Frame(container)
         frame.columnconfigure(0, weight=0)
 
-        self.face_label = tk.Label(
+        self.__face_label = tk.Label(
             frame,
             width=self.IMAGE_FACE_LABEL_SHAPE[0],
             height=self.IMAGE_FACE_LABEL_SHAPE[1],
         )
-        self.face_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
-        self.set_init_image_label(self.IMAGE_FACE_LABEL_SHAPE, self.face_label)
+        self.__face_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
+        self.__set_init_image_label(self.IMAGE_FACE_LABEL_SHAPE, self.__face_label)
 
-        self.scrolled_text_pred = ScrolledText(frame, width=20, height=7)
-        self.scrolled_text_pred.grid(column=0, row=1, columnspan=2, sticky=tk.W)
+        self.__scrolled_text_pred = ScrolledText(frame, width=30, height=7)
+        self.__scrolled_text_pred.grid(column=0, row=1, columnspan=2, sticky=tk.W)
         tk.Label(frame, text="Open a file").grid(column=0, row=2, sticky=tk.W)
         tk.Button(
-            frame, text="Open a file", command=self.open_image_with_file_browser
+            frame, text="Open a file", command=self.__open_image_with_file_browser
         ).grid(column=1, row=2)
-        tk.Label(frame, text="Predict selected face").grid(column=0, row=3, sticky=tk.W)
-        tk.Button(frame, text="Predict").grid(column=1, row=3)
+        tk.Label(frame, text="Predict selected __face_buffer").grid(
+            column=0, row=3, sticky=tk.W
+        )
+        tk.Button(frame, text="Predict", command=self.__predict).grid(column=1, row=3)
 
         for widget in frame.winfo_children():
             widget.grid(padx=0, pady=3)
         return frame
 
-    def put_face_in_label(self):
-        if self.face is not None:
-            cv2image = cv.cvtColor(self.face, cv.COLOR_BGR2RGB)
-            face_image = Image.fromarray(cv2image).resize(
-                self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
-            )
-            face_image = ImageTk.PhotoImage(face_image)
-            self.face_label.imgtk = face_image
-            self.face_label.configure(image=face_image)
-
-    def load_prediction_model(self, model_path):
+    # ---------------------------GENERATE EMPTY 2D IMAGE ARRAY (BLACK IMAGE)---------------------------#
+    def __set_init_image_label(self, shape, image_label):
         """
-        Function to load the prediction model with its weights
-        :return: loaded model
+        Set the image label to a blank image. It prevents a bug where the label is
+        created without image which consequently create a __window to the maximum size.
+        :param shape: the shape of the image
+        :param image_label: the image label to set
+        :return: None
         """
-        return tf.keras.models.load_model(model_path)
+        arr = np.asarray([[255] * shape[0]] * shape[1])
+        face_image = Image.fromarray(arr)
+        face_image = ImageTk.PhotoImage(face_image)
+        image_label.imgtk = face_image
+        image_label.configure(image=face_image)
 
-    def set_up_opencv(self):
-        return cv.VideoCapture(0)
-
-    def facial_detection_and_mark(self, _image):
+    # ------------------------------SEARCH FACE IN IMAGE------------------------------#
+    def __facial_detection_and_mark(self, _image):
         """
         Function to detect and mark faces in an image
         :param _image: image to detect faces in
-        :param class_cascade: classifier to use for face detection
+        :param class_cascade: classifier to use for __face_buffer detection
         :return: image with marked faces
         """
         frame = _image.copy()
         gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-        faces = self.class_cascadefacial.detectMultiScale(
+        faces = self.__class_cascadefacial.detectMultiScale(
             gray,
             scaleFactor=1.1,
             minNeighbors=5,
-            # minSize=(30, 30),
-            minSize=self.IMAGE_FACE_LABEL_SHAPE,
+            minSize=(30, 30),
+            # minSize=self.IMAGE_FACE_LABEL_SHAPE,
             flags=cv.CASCADE_SCALE_IMAGE,
         )
         for (x_axis, y_axis, width, height) in faces:
-            face = self.crop_face(_image, (x_axis, y_axis, width, height))
+            face = self.__crop_face(_image, (x_axis, y_axis, width, height))
             cv.rectangle(
                 frame,
                 (x_axis, y_axis),
@@ -183,25 +208,56 @@ class UserInterface:
             return frame, face
         return frame, None
 
-    def crop_face(self, image, face_coordinates):
+    # ------------------------------CROP FACE FROM IMAGE------------------------------#
+    def __crop_face(self, image, face_coordinates):
         """
-        Function to crop the face from an image
-        :param image: image to crop the face from
-        :param face_coordinates: coordinates of the face to crop
-        :return: cropped face
+        Function to crop the __face_buffer from an image
+        :param image: image to crop the __face_buffer from
+        :param face_coordinates: coordinates of the __face_buffer to crop
+        :return: cropped __face_buffer
         """
         x_axis, y_axis, width, height = face_coordinates
         face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
         return np.asarray(face_image)
 
-    def open_image_with_file_browser(self):
+    # ------------------------------OPEN FILE BROWSER------------------------------#
+    def __open_image_with_file_browser(self):
         file_name_path = fd.askopenfilename(title="Select an image")
         face_browser = cv.imread(file_name_path)
-        image, face_browser = self.facial_detection_and_mark(face_browser)
+        image, face_browser = self.__facial_detection_and_mark(face_browser)
         cv2image = cv.cvtColor(face_browser, cv.COLOR_BGR2RGB)
         face_image = Image.fromarray(cv2image).resize(
             self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
         )
+        self.__predictable_face_buffer = face_image
         face_image = ImageTk.PhotoImage(face_image)
-        self.face_label.imgtk = face_image
-        self.face_label.configure(image=face_image)
+        self.__face_label.imgtk = face_image
+        self.__face_label.configure(image=face_image)
+
+    # ------------------------------PREDICT FACE FROM MODEL------------------------------#
+    def __predict(self):
+        if self.__predictable_face_buffer is not None:
+            prediction = self.__classification_model.predict(
+                expand_dims(np.asarray(self.__predictable_face_buffer), 0)
+            )
+            # print(f"{person_dictionary.id_10_person_dic[np.argmax(prediction)]}")
+            ranking = np.argsort(prediction)[0][::-1]
+            self.__scrolled_text_pred.delete("1.0", tk.END)
+            for i in range(10):
+                self.__scrolled_text_pred.insert(
+                    tk.END,
+                    f"{i + 1} - {person_dictionary.id_10_person_dic[ranking[i]]} : "
+                    f"{int(prediction[0][ranking[i]] * 100)}%\n",
+                )
+
+    # ------------------------------PUT FACE FROM VIDEO TO LABEL------------------------------#
+    def __put_face_in_label(self):
+        if self.__face_buffer is not None:
+            cv2image = cv.cvtColor(self.__face_buffer, cv.COLOR_BGR2RGB)
+            face_image = Image.fromarray(cv2image).resize(
+                self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
+            )
+            self.__predictable_face_buffer = face_image
+            face_image = ImageTk.PhotoImage(face_image)
+            self.__face_label.imgtk = face_image
+            self.__face_label.configure(image=face_image)

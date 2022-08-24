@@ -33,7 +33,11 @@ Datasets:
 
 ## Images
 
+### Dataset images
+
 ![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
+
+### UI screenshot
 
 ## Quickstart
 
@@ -96,7 +100,9 @@ face_recognition_cnn
 |  ├── ml_lfw.ipynb
 ├── src
 |  ├── main.py
+|  ├── person_dictionary.py
 |  ├── training.py
+|  ├── user_interface.py
 ├── weights
 |  ├── resnet50_lfw.h5
 ├── .editorconfig
