@@ -165,7 +165,7 @@ class UserInterface:
             flags=cv.CASCADE_SCALE_IMAGE,
         )
         for (x_axis, y_axis, width, height) in faces:
-            face = self.crop_face(frame, (x_axis, y_axis, width, height))
+            face = self.crop_face(_image, (x_axis, y_axis, width, height))
             cv.rectangle(
                 frame,
                 (x_axis, y_axis),
@@ -186,3 +186,8 @@ class UserInterface:
         x_axis, y_axis, width, height = face_coordinates
         face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
         return np.asarray(face_image)
+
+    def open_image_with_file_browser(self):
+        # return tk.filedialog.askopenfilename(initialdir="/",
+        #                                      title="Select a File",
+        #                                      filetypes=((" files", "*.jpg"))
