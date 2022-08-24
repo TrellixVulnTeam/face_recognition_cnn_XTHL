@@ -8,6 +8,8 @@ user_interface.py python file
 """
 
 import tkinter as tk
+import tkinter.filedialog as fd
+from tkinter.scrolledtext import ScrolledText
 
 import cv2 as cv
 import numpy as np
@@ -25,11 +27,12 @@ class UserInterface:
     def __init__(self, window_name, haar_cascade_weights_path, model_path):
         self.camera_label = None
         self.face_label = None
+        self.scrolled_text_pred = None
         self.window = self.create_window(window_name)
         self.camera = self.set_up_opencv()
         self.class_cascadefacial = cv.CascadeClassifier(haar_cascade_weights_path)
         self.face = None
-        # self.classification_model = self.load_prediction_model(model_path)
+        self.classification_model = self.load_prediction_model(model_path)
 
     def start(self):
         self.camera_label.after(20, self.show_frames)
@@ -52,9 +55,7 @@ class UserInterface:
     def show_frames(self):
         b_img_ready, image_frame = self.camera.read()
         if b_img_ready:
-            camera_image, self.face = self.facial_detection_and_mark(
-                image_frame, self.class_cascadefacial
-            )
+            camera_image, self.face = self.facial_detection_and_mark(image_frame)
             cv2image = cv.cvtColor(camera_image, cv.COLOR_BGR2RGB)
             img = Image.fromarray(cv2image).resize(self.VIDEO_LABEL_SHAPE)
             imgtk = ImageTk.PhotoImage(image=img)
@@ -120,10 +121,14 @@ class UserInterface:
         self.face_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
         self.set_init_image_label(self.IMAGE_FACE_LABEL_SHAPE, self.face_label)
 
-        tk.Label(frame, text="Open a file").grid(column=0, row=1, sticky=tk.W)
-        tk.Button(frame, text="Open a file").grid(column=1, row=1)
-        tk.Label(frame, text="Predict selected face").grid(column=0, row=2, sticky=tk.W)
-        tk.Button(frame, text="Predict").grid(column=1, row=2)
+        self.scrolled_text_pred = ScrolledText(frame, width=20, height=7)
+        self.scrolled_text_pred.grid(column=0, row=1, columnspan=2, sticky=tk.W)
+        tk.Label(frame, text="Open a file").grid(column=0, row=2, sticky=tk.W)
+        tk.Button(
+            frame, text="Open a file", command=self.open_image_with_file_browser
+        ).grid(column=1, row=2)
+        tk.Label(frame, text="Predict selected face").grid(column=0, row=3, sticky=tk.W)
+        tk.Button(frame, text="Predict").grid(column=1, row=3)
 
         for widget in frame.winfo_children():
             widget.grid(padx=0, pady=3)
@@ -132,9 +137,10 @@ class UserInterface:
     def put_face_in_label(self):
         if self.face is not None:
             cv2image = cv.cvtColor(self.face, cv.COLOR_BGR2RGB)
-            face_image = Image.fromarray(cv2image).resize(self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS)
+            face_image = Image.fromarray(cv2image).resize(
+                self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
+            )
             face_image = ImageTk.PhotoImage(face_image)
-            # cv.imshow("image", cv2image)
             self.face_label.imgtk = face_image
             self.face_label.configure(image=face_image)
 
@@ -148,7 +154,7 @@ class UserInterface:
     def set_up_opencv(self):
         return cv.VideoCapture(0)
 
-    def facial_detection_and_mark(self, _image, class_cascade):
+    def facial_detection_and_mark(self, _image):
         """
         Function to detect and mark faces in an image
         :param _image: image to detect faces in
@@ -157,11 +163,12 @@ class UserInterface:
         """
         frame = _image.copy()
         gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-        faces = class_cascade.detectMultiScale(
+        faces = self.class_cascadefacial.detectMultiScale(
             gray,
             scaleFactor=1.1,
             minNeighbors=5,
-            minSize=(30, 30),
+            # minSize=(30, 30),
+            minSize=self.IMAGE_FACE_LABEL_SHAPE,
             flags=cv.CASCADE_SCALE_IMAGE,
         )
         for (x_axis, y_axis, width, height) in faces:
@@ -188,6 +195,13 @@ class UserInterface:
         return np.asarray(face_image)
 
     def open_image_with_file_browser(self):
-        # return tk.filedialog.askopenfilename(initialdir="/",
-        #                                      title="Select a File",
-        #                                      filetypes=((" files", "*.jpg"))
+        file_name_path = fd.askopenfilename(title="Select an image")
+        face_browser = cv.imread(file_name_path)
+        image, face_browser = self.facial_detection_and_mark(face_browser)
+        cv2image = cv.cvtColor(face_browser, cv.COLOR_BGR2RGB)
+        face_image = Image.fromarray(cv2image).resize(
+            self.IMAGE_FACE_LABEL_SHAPE, Image.ANTIALIAS
+        )
+        face_image = ImageTk.PhotoImage(face_image)
+        self.face_label.imgtk = face_image
+        self.face_label.configure(image=face_image)
