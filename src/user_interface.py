@@ -13,7 +13,6 @@ import cv2 as cv
 import numpy as np
 import tensorflow as tf
 from PIL import Image, ImageTk
-from numpy import expand_dims
 
 
 # Put everything in private scope
@@ -185,10 +184,5 @@ class UserInterface:
         :return: cropped face
         """
         x_axis, y_axis, width, height = face_coordinates
-        # face_image = Image.fromarray(
-        #     image[y_axis: y_axis + height, x_axis: x_axis + width]
-        # ).resize(self.IMAGE_FACE_LABEL_SHAPE)
         face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
-        cv.imshow("face", face_image)
-        face_array = np.asarray(face_image)
-        return expand_dims(np.asarray(face_array), 0)
+        return np.asarray(face_image)
