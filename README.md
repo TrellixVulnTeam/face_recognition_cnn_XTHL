@@ -86,6 +86,33 @@ You can then press the `predict` button to check who it is.
 If you use the camera from your computer, when you clicked find face, your face will be croped from the video and
 display in the left of the app, then you can press the `predict` button to check who you look like.
 
+### Example image selection
+
+Start the `main.py` script file, once the UI is open, click on the `Open image` button and select an image button,
+select your image (in my case Arnold Schwarzenegger).
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59691442/186625931-93c1eb04-3cb6-4cbd-b065-7482fbef4fef.jpg" alt="arnoldImage" style="height:300px;">
+</p>
+
+Once selected, the image will be displayed in the left part of the app with the face croped from the image.
+
+You can then press the `predict` button to check who it is.
+
+![arnold predicted](https://user-images.githubusercontent.com/59691442/186628360-9e153db8-ee27-4026-bda2-be9d68e8f86a.png)
+
+[//]: # (![ui_example]&#40;https://user-images.githubusercontent.com/59691442/186625879-1b30fd3a-2968-4a6e-bccb-2726249115e7.png&#41;)
+
+Arnold Schwarzenegger is the predicted person.
+
+### Example image from webcam
+
+Start the `main.py` script file, once the UI is open, click the `ON/OFF` button to enable the camera, then press
+the `Find face` button. Your face croped from the video will be displayed in the right upper corner of the app.
+You can then press the `predict` button to check who you look like.
+
+![me_croped](https://user-images.githubusercontent.com/59691442/186629337-f8fb1f26-6634-4658-a7bc-37ecac7fa194.png)
+
 ## Project architecture
 
 ~~~

@@ -71,7 +71,7 @@ class UserInterface:
                 imgtk = ImageTk.PhotoImage(image=img)
                 self.__camera_label.imgtk = imgtk
                 self.__camera_label.configure(image=imgtk)
-                self.__camera_label.after(20, self.__show_frames)
+        self.__camera_label.after(20, self.__show_frames)
 
     # # ------------------------------INIT OPENCV METHOD------------------------------#
     # def __set_up_opencv(self):
@@ -125,8 +125,10 @@ class UserInterface:
         self.__set_init_image_label(self.VIDEO_LABEL_SHAPE, self.__camera_label)
 
         tk.Label(frame, text="Video capture state:").grid(column=0, row=1, sticky=tk.W)
-        tk.Button(frame, text="ON/OFF", command=self.__toggle_video_enabled).grid(column=1, row=1)
-        tk.Label(frame, text="Find __face_buffer for prediction").grid(
+        tk.Button(frame, text="ON/OFF", command=self.__toggle_video_enabled).grid(
+            column=1, row=1
+        )
+        tk.Label(frame, text="Find face from camera:").grid(
             column=0, row=2, sticky=tk.W
         )
         tk.Button(frame, text="Find Face", command=self.__put_face_in_label).grid(
@@ -150,13 +152,13 @@ class UserInterface:
         self.__face_label.grid(row=0, column=0, columnspan=2, sticky=tk.NSEW)
         self.__set_init_image_label(self.IMAGE_FACE_LABEL_SHAPE, self.__face_label)
 
-        self.__scrolled_text_pred = ScrolledText(frame, width=30, height=7)
+        self.__scrolled_text_pred = ScrolledText(frame, width=35, height=7)
         self.__scrolled_text_pred.grid(column=0, row=1, columnspan=2, sticky=tk.W)
-        tk.Label(frame, text="Open a file").grid(column=0, row=2, sticky=tk.W)
+        tk.Label(frame, text="Open a file:").grid(column=0, row=2, sticky=tk.W)
         tk.Button(
             frame, text="Open a file", command=self.__open_image_with_file_browser
         ).grid(column=1, row=2)
-        tk.Label(frame, text="Predict selected __face_buffer").grid(
+        tk.Label(frame, text="Predict selected face:").grid(
             column=0, row=3, sticky=tk.W
         )
         tk.Button(frame, text="Predict", command=self.__predict).grid(column=1, row=3)
@@ -219,7 +221,7 @@ class UserInterface:
         :return: cropped __face_buffer
         """
         x_axis, y_axis, width, height = face_coordinates
-        face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
+        face_image = image[y_axis : y_axis + height, x_axis : x_axis + width]
         return np.asarray(face_image)
 
     # ------------------------------OPEN FILE BROWSER------------------------------#
@@ -237,11 +239,9 @@ class UserInterface:
         self.__face_label.configure(image=face_image)
 
     def __toggle_video_enabled(self):
-        if self.__video_enabled:
-            self.__camera.release()
-        else:
-            self.__camera = cv.VideoCapture(0)
         self.__video_enabled = not self.__video_enabled
+        if not self.__video_enabled:
+            self.__set_init_image_label(self.VIDEO_LABEL_SHAPE, self.__camera_label)
 
     # ------------------------------PREDICT FACE FROM MODEL------------------------------#
     def __predict(self):
