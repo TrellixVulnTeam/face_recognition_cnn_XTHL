@@ -41,7 +41,8 @@ class UserInterface:
         self.__scrolled_text_pred = None
         self.__camera_label = None
         self.__face_label = None
-        self.__camera = self.__set_up_opencv()
+        self.__camera = cv.VideoCapture(0)
+        self.__video_enabled = False
         self.__class_cascadefacial = cv.CascadeClassifier(haar_cascade_weights_path)
         self.__classification_model = self.__load_prediction_model(model_path)
         self.__window = self.__create_window(window_name)
@@ -59,25 +60,26 @@ class UserInterface:
 
     # ------------------------------REFRESH VIDEO METHOD------------------------------#
     def __show_frames(self):
-        b_img_ready, image_frame = self.__camera.read()
-        if b_img_ready:
-            camera_image, self.__face_buffer = self.__facial_detection_and_mark(
-                image_frame
-            )
-            cv2image = cv.cvtColor(camera_image, cv.COLOR_BGR2RGB)
-            img = Image.fromarray(cv2image).resize(self.VIDEO_LABEL_SHAPE)
-            imgtk = ImageTk.PhotoImage(image=img)
-            self.__camera_label.imgtk = imgtk
-            self.__camera_label.configure(image=imgtk)
-            self.__camera_label.after(20, self.__show_frames)
+        if self.__video_enabled:
+            b_img_ready, image_frame = self.__camera.read()
+            if b_img_ready:
+                camera_image, self.__face_buffer = self.__facial_detection_and_mark(
+                    image_frame
+                )
+                cv2image = cv.cvtColor(camera_image, cv.COLOR_BGR2RGB)
+                img = Image.fromarray(cv2image).resize(self.VIDEO_LABEL_SHAPE)
+                imgtk = ImageTk.PhotoImage(image=img)
+                self.__camera_label.imgtk = imgtk
+                self.__camera_label.configure(image=imgtk)
+                self.__camera_label.after(20, self.__show_frames)
 
-    # ------------------------------INIT OPENCV METHOD------------------------------#
-    def __set_up_opencv(self):
-        """
-        Function to set up the opencv __camera
-        :return: None
-        """
-        return cv.VideoCapture(0)
+    # # ------------------------------INIT OPENCV METHOD------------------------------#
+    # def __set_up_opencv(self):
+    #     """
+    #     Function to set up the opencv __camera
+    #     :return: None
+    #     """
+    #     return cv.VideoCapture(0)
 
     # ------------------------------LOAD MODEL METHOD------------------------------#
     def __load_prediction_model(self, model_path):
@@ -123,7 +125,7 @@ class UserInterface:
         self.__set_init_image_label(self.VIDEO_LABEL_SHAPE, self.__camera_label)
 
         tk.Label(frame, text="Video capture state:").grid(column=0, row=1, sticky=tk.W)
-        tk.Button(frame, text="ON/OFF").grid(column=1, row=1)
+        tk.Button(frame, text="ON/OFF", command=self.__toggle_video_enabled).grid(column=1, row=1)
         tk.Label(frame, text="Find __face_buffer for prediction").grid(
             column=0, row=2, sticky=tk.W
         )
@@ -217,7 +219,7 @@ class UserInterface:
         :return: cropped __face_buffer
         """
         x_axis, y_axis, width, height = face_coordinates
-        face_image = image[y_axis : y_axis + height, x_axis : x_axis + width]
+        face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
         return np.asarray(face_image)
 
     # ------------------------------OPEN FILE BROWSER------------------------------#
@@ -233,6 +235,13 @@ class UserInterface:
         face_image = ImageTk.PhotoImage(face_image)
         self.__face_label.imgtk = face_image
         self.__face_label.configure(image=face_image)
+
+    def __toggle_video_enabled(self):
+        if self.__video_enabled:
+            self.__camera.release()
+        else:
+            self.__camera = cv.VideoCapture(0)
+        self.__video_enabled = not self.__video_enabled
 
     # ------------------------------PREDICT FACE FROM MODEL------------------------------#
     def __predict(self):
