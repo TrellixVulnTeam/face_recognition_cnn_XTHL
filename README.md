@@ -33,21 +33,16 @@ Datasets:
 
 ## Images
 
-### Dataset images
-
-![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
-
 ### UI screenshot
+
+![ui_image](https://user-images.githubusercontent.com/59691442/186635140-9a48545e-4089-4e50-a062-b73c160529dc.png)
 
 ## Quickstart
 
 To use the script, you need to install Python (at least 3.8 version).  
 You also need to install some packages, you can find the list in the `requirements.txt` file or in the `setup.py` file.
 
-You also need to install Mozilla Firefox to run the scripts. Please follow the instruction bellow to install Selenium:  
-<https://selenium-python.readthedocs.io/installation.html>
-
-To install them all automatically, type the following command at the root of the project :
+To install them all automatically, type the following command at the root of the project:
 
 ```bash
 pip install -r requirements.txt
@@ -70,10 +65,6 @@ pip install
 Once everything is installed, you can open the script `main.py` in the `src` folder.
 It will create a window and start your camera.
 
-[//]: # (Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the)
-
-[//]: # (console.)
-
 There is two ways to use the app:
 
 - Open an image by clicking on the `Open image` button.
@@ -85,6 +76,36 @@ You can then press the `predict` button to check who it is.
 
 If you use the camera from your computer, when you clicked find face, your face will be croped from the video and
 display in the left of the app, then you can press the `predict` button to check who you look like.
+
+### Example image selection
+
+Start the `main.py` script file, once the UI is open, click on the `Open image` button and select an image button,
+select your image (in my case Arnold Schwarzenegger).
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59691442/186625931-93c1eb04-3cb6-4cbd-b065-7482fbef4fef.jpg" alt="arnoldImage" style="height:300px;">
+</p>
+
+Once selected, the image will be displayed in the left part of the app with the face croped from the image.
+
+You can then press the `predict` button to check who it is.
+
+![arnold predicted](https://user-images.githubusercontent.com/59691442/186628360-9e153db8-ee27-4026-bda2-be9d68e8f86a.png)
+
+[//]: # (![ui_example]&#40;https://user-images.githubusercontent.com/59691442/186625879-1b30fd3a-2968-4a6e-bccb-2726249115e7.png&#41;)
+
+Arnold Schwarzenegger is the predicted person.
+
+### Example image from webcam
+
+Start the `main.py` script file, once the UI is open, click the `ON/OFF` button to enable the camera, then press
+the `Find face` button. Your face croped from the video will be displayed in the right upper corner of the app.
+You can then press the `predict` button to check who you look like.
+
+![me_croped](https://user-images.githubusercontent.com/59691442/186629337-f8fb1f26-6634-4658-a7bc-37ecac7fa194.png)
+
+> **Note**  
+> You can find a list of outputs in the `Datasets results` section
 
 ## Project architecture
 
@@ -130,15 +151,30 @@ face_recognition_cnn
 ├── setup.py
 ~~~
 
-## Training results
+## Training
 
-### Training details
+### How to train
 
-![myplot](https://user-images.githubusercontent.com/59691442/186006713-7d9eedda-f51a-43ed-8492-87449dc72fcc.png)
+To train the model, you need to download the LFW (Labeled Faces in the Wild) dataset and put it in the `datasets`
+folder.
+<http://vis-www.cs.umass.edu/lfw/>
+
+Depending on the minimum number of images a person need to have you
+need to start the `remake_dataset.py` script.
+It will untar the dataset and delete all persons who don't have at least the minimum number of images (you can change
+this parameter by changing the variable `MINIMUM_IMAGES_BY_CLASS` in the script).
+
+The weights and the model will be respectively saved in the `weights` and `models` folder.
+
+### Dataset images
+
+![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
 
 ### Dataset results
 
 #### LFW
+
+![myplot](https://user-images.githubusercontent.com/59691442/186006713-7d9eedda-f51a-43ed-8492-87449dc72fcc.png)
 
 LFW 70 persons minimum:
 
@@ -157,7 +193,7 @@ LFW 10 persons minimum:
     - Accuracy: 0.78
 
 > **Note**  
-> The accuracy is shown is from the test datasets.
+> The accuracy is shown is from the test par of the datasets.
 
 <!--
 ### Large-scale CelebFaces Attributes
@@ -169,6 +205,172 @@ LFW 10 persons minimum:
     - Recall: 0.9)
     - F1 score: 0.9)
 -->
+
+#### List of outputs
+
+<details>
+  <summary>List of predictable persons</summary>
+  <p>
+    Abdullah_Gul,
+    Adrien_Brody,
+    Alejandro_Toledo,
+    Alvaro_Uribe,
+    Amelie_Mauresmo,
+    Andre_Agassi,
+    Andy_Roddick,
+    Angelina_Jolie,
+    Ann_Veneman,
+    Anna_Kournikova,
+    Ari_Fleischer,
+    Ariel_Sharon,
+    Arnold_Schwarzenegger,
+    Atal_Bihari_Vajpayee,
+    Bill_Clinton,
+    Bill_Gates,
+    Bill_McBride,
+    Bill_Simon,
+    Britney_Spears,
+    Carlos_Menem,
+    Carlos_Moya,
+    Catherine_Zeta-Jones,
+    Charles_Moose,
+    Colin_Powell,
+    Condoleezza_Rice,
+    David_Beckham,
+    David_Nalbandian,
+    Dick_Cheney,
+    Dominique_de_Villepin,
+    Donald_Rumsfeld,
+    Edmund_Stoiber,
+    Eduardo_Duhalde,
+    Fidel_Castro,
+    George_HW_Bush,
+    George_Robertson,
+    George_W_Bush,
+    Gerhard_Schroeder,
+    Gloria_Macapagal_Arroyo,
+    Gonzalo_Sanchez_de_Lozada,
+    Gordon_Brown,
+    Gray_Davis,
+    Guillermo_Coria,
+    Halle_Berry,
+    Hamid_Karzai,
+    Hans_Blix,
+    Harrison_Ford,
+    Hillary_Clinton,
+    Howard_Dean,
+    Hu_Jintao,
+    Hugo_Chavez,
+    Ian_Thorpe,
+    Igor_Ivanov,
+    Jack_Straw,
+    Jackie_Chan,
+    Jacques_Chirac,
+    Jacques_Rogge,
+    James_Blake,
+    James_Kelly,
+    Jason_Kidd,
+    Javier_Solana,
+    Jean-David_Levitte,
+    Jean_Charest,
+    Jean_Chretien,
+    Jeb_Bush,
+    Jennifer_Aniston,
+    Jennifer_Capriati,
+    Jennifer_Garner,
+    Jennifer_Lopez,
+    Jeremy_Greenstock,
+    Jiang_Zemin,
+    Jiri_Novak,
+    Joe_Lieberman,
+    John_Allen_Muhammad,
+    John_Ashcroft,
+    John_Bolton,
+    John_Howard,
+    John_Kerry,
+    John_Negroponte,
+    John_Paul_II,
+    John_Snow,
+    Joschka_Fischer,
+    Jose_Maria_Aznar,
+    Juan_Carlos_Ferrero,
+    Julianne_Moore,
+    Julie_Gerberding,
+    Junichiro_Koizumi,
+    Keanu_Reeves,
+    Kim_Clijsters,
+    Kim_Ryong-sung,
+    Kofi_Annan,
+    Lance_Armstrong,
+    Laura_Bush,
+    Lindsay_Davenport,
+    Lleyton_Hewitt,
+    Lucio_Gutierrez,
+    Luiz_Inacio_Lula_da_Silva,
+    Mahathir_Mohamad,
+    Mahmoud_Abbas,
+    Mark_Philippoussis,
+    Megawati_Sukarnoputri,
+    Meryl_Streep,
+    Michael_Bloomberg,
+    Michael_Jackson,
+    Michael_Schumacher,
+    Mike_Weir,
+    Mohammad_Khatami,
+    Mohammed_Al-Douri,
+    Muhammad_Ali,
+    Nancy_Pelosi,
+    Naomi_Watts,
+    Nestor_Kirchner,
+    Nicanor_Duarte_Frutos,
+    Nicole_Kidman,
+    Norah_Jones,
+    Paradorn_Srichaphan,
+    Paul_Bremer,
+    Paul_Burrell,
+    Paul_Wolfowitz,
+    Pervez_Musharraf,
+    Pete_Sampras,
+    Pierce_Brosnan,
+    Queen_Elizabeth_II,
+    Recep_Tayyip_Erdogan,
+    Renee_Zellweger,
+    Ricardo_Lagos,
+    Richard_Gephardt,
+    Richard_Gere,
+    Richard_Myers,
+    Roger_Federer,
+    Roh_Moo-hyun,
+    Rubens_Barrichello,
+    Rudolph_Giuliani,
+    Saddam_Hussein,
+    Salma_Hayek,
+    Serena_Williams,
+    Sergey_Lavrov,
+    Sergio_Vieira_De_Mello,
+    Silvio_Berlusconi,
+    Spencer_Abraham,
+    Taha_Yassin_Ramadan,
+    Tang_Jiaxuan,
+    Tiger_Woods,
+    Tim_Henman,
+    Tom_Cruise,
+    Tom_Daschle,
+    Tom_Hanks,
+    Tom_Ridge,
+    Tommy_Franks,
+    Tommy_Thompson,
+    Tony_Blair,
+    Trent_Lott,
+    Venus_Williams,
+    Vicente_Fox,
+    Vladimir_Putin,
+    Walter_Mondale,
+    Wen_Jiabao,
+    Winona_Ryder,
+    Yoriko_Kawaguchi,
+  </p>
+</details>
 
 ## Unit test scripts
 
