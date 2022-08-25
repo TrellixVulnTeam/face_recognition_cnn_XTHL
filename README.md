@@ -33,21 +33,16 @@ Datasets:
 
 ## Images
 
-### Dataset images
-
-![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
-
 ### UI screenshot
+
+![ui_image](https://user-images.githubusercontent.com/59691442/186635140-9a48545e-4089-4e50-a062-b73c160529dc.png)
 
 ## Quickstart
 
 To use the script, you need to install Python (at least 3.8 version).  
 You also need to install some packages, you can find the list in the `requirements.txt` file or in the `setup.py` file.
 
-You also need to install Mozilla Firefox to run the scripts. Please follow the instruction bellow to install Selenium:  
-<https://selenium-python.readthedocs.io/installation.html>
-
-To install them all automatically, type the following command at the root of the project :
+To install them all automatically, type the following command at the root of the project:
 
 ```bash
 pip install -r requirements.txt
@@ -69,10 +64,6 @@ pip install
 
 Once everything is installed, you can open the script `main.py` in the `src` folder.
 It will create a window and start your camera.
-
-[//]: # (Your face found by the app, press the S key to take a screenshot of the face, the output name will be writen in the)
-
-[//]: # (console.)
 
 There is two ways to use the app:
 
@@ -160,15 +151,30 @@ face_recognition_cnn
 ├── setup.py
 ~~~
 
-## Training results
+## Training
 
-### Training details
+### How to train
 
-![myplot](https://user-images.githubusercontent.com/59691442/186006713-7d9eedda-f51a-43ed-8492-87449dc72fcc.png)
+To train the model, you need to download the LFW (Labeled Faces in the Wild) dataset and put it in the `datasets`
+folder.
+<http://vis-www.cs.umass.edu/lfw/>
+
+Depending on the minimum number of images a person need to have you
+need to start the `remake_dataset.py` script.
+It will untar the dataset and delete all persons who don't have at least the minimum number of images (you can change
+this parameter by changing the variable `MINIMUM_IMAGES_BY_CLASS` in the script).
+
+The weights and the model will be respectively saved in the `weights` and `models` folder.
+
+### Dataset images
+
+![myplot4](https://user-images.githubusercontent.com/59691442/186006740-c3bf2f78-a252-439e-ad11-0db503f0c35f.png)
 
 ### Dataset results
 
 #### LFW
+
+![myplot](https://user-images.githubusercontent.com/59691442/186006713-7d9eedda-f51a-43ed-8492-87449dc72fcc.png)
 
 LFW 70 persons minimum:
 
