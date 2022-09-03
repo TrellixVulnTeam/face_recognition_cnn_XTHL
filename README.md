@@ -74,7 +74,7 @@ If you have selected an image from your computer, the image will automatically f
 display it in the left part of the app.
 You can then press the `predict` button to check who it is.
 
-If you use the camera from your computer, when you clicked find face, your face will be croped from the video and
+If you use the camera from your computer, when you clicked find face, your face will be cropped from the video and
 display in the left of the app, then you can press the `predict` button to check who you look like.
 
 ### Example image selection
@@ -86,7 +86,7 @@ select your image (in my case Arnold Schwarzenegger).
   <img src="https://user-images.githubusercontent.com/59691442/186625931-93c1eb04-3cb6-4cbd-b065-7482fbef4fef.jpg" alt="arnoldImage" style="height:300px;">
 </p>
 
-Once selected, the image will be displayed in the left part of the app with the face croped from the image.
+Once selected, the image will be displayed in the left part of the app with the face cropped from the image.
 
 You can then press the `predict` button to check who it is.
 
@@ -99,10 +99,10 @@ Arnold Schwarzenegger is the predicted person.
 ### Example image from webcam
 
 Start the `main.py` script file, once the UI is open, click the `ON/OFF` button to enable the camera, then press
-the `Find face` button. Your face croped from the video will be displayed in the right upper corner of the app.
+the `Find face` button. Your face cropped from the video will be displayed in the right upper corner of the app.
 You can then press the `predict` button to check who you look like.
 
-![me_croped](https://user-images.githubusercontent.com/59691442/186629337-f8fb1f26-6634-4658-a7bc-37ecac7fa194.png)
+![me_cropped](https://user-images.githubusercontent.com/59691442/186629337-f8fb1f26-6634-4658-a7bc-37ecac7fa194.png)
 
 > **Note**  
 > You can find a list of outputs in the `Datasets results` section
@@ -412,7 +412,7 @@ pylint .
 It will scan all the project and print a report.
 
 > **Note**  
-> If you followe the steps in the `Quickstart` section then you won't need to install it again.
+> If you follow the steps in the `Quickstart` section then you won't need to install it again.
 
 ## Code formatter
 
@@ -529,13 +529,21 @@ Quentin MOREL :
 [![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/face_recognition_cnn)](https://github.com/Im-Rises/face_recognition_cnn/graphs/contributors)
 
 <!--
-<https://l.messenger.com/l.php?u=https%3A%2F%2Ftowardsdatascience.com%2Fwhich-celebrity-are-you-d8c6507f21c9&h=AT2JXOiux7hfqK4Gey9gcOx_xiuX1g3oIkwaiiJ_R4_OPPzaZSGZNU9ta7Iu--xWiCKV9fb4UXF7pF2QQEekJCCDo-wAY0vBqUxFdPpKBvvxpYqFLdLNLf6OQXz80J6VdMI9oA>
 
+Tutorials:
 https://towardsdatascience.com/which-celebrity-are-you-d8c6507f21c9
-
+https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/
 https://sefiks.com/2019/05/05/celebrity-look-alike-face-recognition-with-deep-learning-in-keras/
-
 https://medium.com/analytics-vidhya/celebrity-recognition-using-vggface-and-annoy-363c5df31f1e
 
+Github:
+https://github.com/AruniRC/resnet-face-pytorch#pytorch-resnet-on-vggface2
+https://github.com/kuo77122/deep-face-detector
 https://github.com/serengil/tensorflow-101
+
+Datasets:
+http://vis-www.cs.umass.edu/lfw/
+https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html
+https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/
+
 -->
