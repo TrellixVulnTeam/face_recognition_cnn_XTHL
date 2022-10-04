@@ -33,11 +33,17 @@ Datasets:
 
 ## Images
 
-### UI screenshot
-
 ![ui_image](https://user-images.githubusercontent.com/59691442/186635140-9a48545e-4089-4e50-a062-b73c160529dc.png)
 
 ## Quickstart
+
+If you want to test the app a web version exist at the following link:  
+<https://im-rises.github.io/face-recognition-website/>
+
+The code of the web version can be found at the link below:  
+<https://github.com/Im-Rises/face-recognition-website>
+
+But if you want to test the app locally, you can follow the following steps:
 
 To use the script, you need to install Python (at least 3.8 version).  
 You also need to install some packages, you can find the list in the `requirements.txt` file or in the `setup.py` file.
@@ -419,7 +425,7 @@ The Tensorflow.js model will be saved in the `modelsTfjs` directory, it contains
 > **Note**  
 > Please follow the guide at the link below for more information on how to convert the model to Tensorflow.js.  
 > https://www.tensorflow.org/js/tutorials/conversion/import_keras
-> This section is used for the `facial-recognition-website project`.
+> This section is used for the `facial-recognition-website` project.
 
 ## PyLint set up
 
@@ -485,7 +491,6 @@ It will also register it in the `.gitattributes` file.
 
 > **Warning**  
 > Al files registered for LFS in the `.gitattributes` file will be stored in the as only one entity (no versioning).
-> Originally all files in the weights folder will be stored online.
 
 ## GitHub Actions
 

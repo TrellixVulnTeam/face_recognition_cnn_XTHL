@@ -10,6 +10,7 @@ training.py python file
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+import tensorflowjs as tfjs
 from keras.applications import ResNet50
 from keras.callbacks import EarlyStopping
 from keras.layers import Dense
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     y = preprocess_input(inputs)
 
     # Create ResNet50 model
-    resnet = ResNet50(
+    model = ResNet50(
         input_shape=[h, w, 3],
         weights="imagenet",
         include_top=False,
@@ -106,19 +107,19 @@ if __name__ == "__main__":
     )
 
     # Freeze layers for transfer learning
-    for layer in resnet.layers[:10]:
+    for layer in model.layers[:10]:
         layer.trainable = False
     # resnet.trainable = False
 
     # Add ResNet50 to the final model output
-    outputs = resnet(y)
+    out = model.output
 
     # Change the ResNet50 output to be the number of class of the dataset
-    x = Flatten()(outputs)
+    x = Flatten()(out)
     x = Dense(n_classes, activation="softmax")(x)
 
     # Assemble model
-    model = tf.keras.Model(inputs, x)
+    model = tf.keras.Model(inputs=model.input, outputs=x)
 
     LEARNING_RATE = 0.001
     NESTEROV = True
@@ -143,8 +144,9 @@ if __name__ == "__main__":
         train_ds, validation_data=val_ds, epochs=50, callbacks=[early_stop]
     )
 
+    # model.save("../modelsTf/resnet50_dl_lfw.h5")
     model.save("../modelsTf/resnet50_dl_lfw")
-    # tfjs.converters.save_keras_model(model, "../modelsTfjs/resnet50_dl_lfw")
+    tfjs.converters.save_keras_model(model, "../modelsTfjs/resnet50_dl_lfw")
 
     acc = history.history["accuracy"]
     val_acc = history.history["val_accuracy"]
