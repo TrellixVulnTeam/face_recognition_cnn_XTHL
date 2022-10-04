@@ -395,6 +395,23 @@ pytest
 > **Note**  
 > If you followed the steps in the `Quickstart` section then you won't need to install it again.
 
+## Convert the model to Tensorflow.js
+
+Tensorflow.js is a library that allows you to run Tensorflow models in the browser. It is a great way to deploy your
+model and make it available to everyone.
+But the model you trained is not compatible with Tensorflow.js, you need to convert it first.
+To do so, type the following command with the input .h5 file and the output .json file:
+
+```bash
+tensorflowjs_converter --input_format keras \
+                       path/to/my_model.h5 \
+                       path/to/tfjs_target_dir
+```
+
+> **Note**  
+> Please follow the guide at the link below for more information on how to convert the model to Tensorflow.js.  
+> https://www.tensorflow.org/js/tutorials/conversion/import_keras
+
 ## PyLint set up
 
 The project is formatted via PyLint, if you want to check the project, you will need to install PyLin:

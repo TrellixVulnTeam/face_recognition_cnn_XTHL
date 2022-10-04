@@ -137,14 +137,13 @@ if __name__ == "__main__":
     )
 
     model.summary()
-    model.save("../models/resnet50_dl_lfw_empty")
 
     early_stop = EarlyStopping(monitor="val_accuracy", patience=2)
     history = model.fit(
         train_ds, validation_data=val_ds, epochs=50, callbacks=[early_stop]
     )
-    model.save_weights("../weights/resnet50_dl_lfw.h5")
-    model.save("../models/resnet50_dl_lfw")
+    # model.save("../models/resnet50_dl_lfw")
+    model.save("../models/resnet50_dl_lfw.h5")
 
     acc = history.history["accuracy"]
     val_acc = history.history["val_accuracy"]
