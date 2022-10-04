@@ -221,7 +221,7 @@ class UserInterface:
         :return: cropped __face_buffer
         """
         x_axis, y_axis, width, height = face_coordinates
-        face_image = image[y_axis : y_axis + height, x_axis : x_axis + width]
+        face_image = image[y_axis: y_axis + height, x_axis: x_axis + width]
         return np.asarray(face_image)
 
     # ------------------------------OPEN FILE BROWSER------------------------------#
@@ -247,8 +247,7 @@ class UserInterface:
     def __predict(self):
         if self.__predictable_face_buffer is not None:
             prediction = self.__classification_model.predict(
-                expand_dims(np.asarray(self.__predictable_face_buffer), 0)
-            )
+                expand_dims(np.asarray(self.__predictable_face_buffer), 0))
             # print(f"{person_dictionary.id_10_person_dic[np.argmax(prediction)]}")
             ranking = np.argsort(prediction)[0][::-1]
             self.__scrolled_text_pred.delete("1.0", tk.END)
