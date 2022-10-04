@@ -26,6 +26,7 @@ setup(
         "opencv-python==4.6.0.66",
         "Pillow==9.2.0",
         "setuptools==65.2.0",
+        "tensorflowjs==3.9.0",
     ],
     url="https://github.com/Im-Rises/face_recognition_cnn",
     license="",
