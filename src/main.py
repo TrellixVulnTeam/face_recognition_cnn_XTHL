@@ -14,7 +14,7 @@ if __name__ == "__main__":
     HAAR_CASCADE_WEIGHTS = (
         "../face_detection_weights/haarcascade_frontalface_default.xml"
     )
-    MODEL_PATH = "../models/resnet50_dl_lfw"
+    MODEL_PATH = "../modelsTf/resnet50_dl_lfw"
 
     user_interface = ui.UserInterface(PROJECT_NAME, HAAR_CASCADE_WEIGHTS, MODEL_PATH)
     user_interface.start()

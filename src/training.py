@@ -142,8 +142,9 @@ if __name__ == "__main__":
     history = model.fit(
         train_ds, validation_data=val_ds, epochs=50, callbacks=[early_stop]
     )
-    # model.save("../models/resnet50_dl_lfw")
-    model.save("../models/resnet50_dl_lfw.h5")
+
+    model.save("../modelsTf/resnet50_dl_lfw")
+    # tfjs.converters.save_keras_model(model, "../modelsTfjs/resnet50_dl_lfw")
 
     acc = history.history["accuracy"]
     val_acc = history.history["val_accuracy"]

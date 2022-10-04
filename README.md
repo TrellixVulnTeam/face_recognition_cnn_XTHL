@@ -129,9 +129,10 @@ face_recognition_cnn
 ├── face_detection_weights
 |  ├── download-link.txt
 |  ├── haarcascade_frontalface_default.xml
-├── models
-├── resnet50_dl_lfw
-├── resnet50_dl_lfw_empty
+├── modelsTf
+|  ├── resnet50_dl_lfw
+├── modelsTfjs
+|  ├── resnet50_dl_lfw
 ├── notebook
 |  ├── dl_lfw.ipynb
 |  ├── ml_lfw.ipynb
@@ -164,7 +165,12 @@ need to start the `remake_dataset.py` script.
 It will untar the dataset and delete all persons who don't have at least the minimum number of images (you can change
 this parameter by changing the variable `MINIMUM_IMAGES_BY_CLASS` in the script).
 
-The weights and the model will be respectively saved in the `weights` and `models` folder.
+The model with the weights are saved in the `modelsTf` folder.
+
+> **Note**  
+> There is also a `modelTfjs` folder, it contains the same model but in a different format, it is used for the
+> `face-recognition-website` project. When you train a model, it will also save the model in this folder.
+> You can find more information about this project in the `Convert the model to Tensorflow.js format` section.
 
 ### Dataset images
 
@@ -395,7 +401,7 @@ pytest
 > **Note**  
 > If you followed the steps in the `Quickstart` section then you won't need to install it again.
 
-## Convert the model to Tensorflow.js
+## Convert the model to Tensorflow.js format
 
 Tensorflow.js is a library that allows you to run Tensorflow models in the browser. It is a great way to deploy your
 model and make it available to everyone.
@@ -408,9 +414,12 @@ tensorflowjs_converter --input_format keras \
                        path/to/tfjs_target_dir
 ```
 
+The Tensorflow.js model will be saved in the `modelsTfjs` directory, it contains a `model.json` file.
+
 > **Note**  
 > Please follow the guide at the link below for more information on how to convert the model to Tensorflow.js.  
 > https://www.tensorflow.org/js/tutorials/conversion/import_keras
+> This section is used for the `facial-recognition-website project`.
 
 ## PyLint set up
 
